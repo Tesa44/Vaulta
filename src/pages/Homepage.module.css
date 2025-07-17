@@ -1,0 +1,55 @@
+.homepage {
+  height: calc(100vh - 4rem);
+}
+
+.homepage main {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 130rem;
+  margin: 0 auto;
+  padding: 8rem 0;
+}
+
+.sectionHomepage {
+}
+
+.sectionHomepage h1 {
+  font-size: 8.2rem;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+}
+
+.sectionHomepage p {
+  font-size: 1.6rem;
+  margin-bottom: 1.2rem;
+}
+
+.sectionHomepage ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  row-gap: 1.2rem;
+  font-size: 2rem;
+  margin-bottom: 3.2rem;
+}
+
+.containerImage img {
+  display: block;
+  width: 100%;
+  margin: auto;
+}
+
+.containerButtons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3.2rem;
+}
+
+.btnCompare {
+  text-decoration: none;
+  display: inline-block;
+  color: var(--color-dark--1);
+  font-size: 1.6rem;
+}
