@@ -38,3 +38,8 @@ a.ctaLink:visited {
   padding: 1rem 2rem;
   border-radius: 7px;
 }
+
+.dark {
+  background-color: var(--color-dark--1);
+  color: #fff;
+}
