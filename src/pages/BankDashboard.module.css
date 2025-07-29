@@ -1,0 +1,226 @@
+.dashboard {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: white;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.nav a {
+  margin: 0 1rem;
+  color: #555;
+  text-decoration: none;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  background: #eee;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.main {
+  flex: 1;
+  padding: 1.5rem 2rem;
+  background: #f7f8fc;
+  overflow-y: auto;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.tabs button {
+  margin-right: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.activeTab {
+  border-bottom: 2px solid #5b5bd6;
+  color: #5b5bd6;
+}
+
+.newTransferBtn {
+  background: #5b5bd6;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+}
+
+.accounts {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.addNewBtn {
+  background: #f0f0ff;
+  color: #5b5bd6;
+  padding: 0.3rem 0.8rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+}
+
+.accountList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.accountCard {
+  padding: 1rem;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  background: #f9faff;
+}
+
+.amount {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.accountLabel {
+  color: #555;
+}
+
+.iban {
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.balanceBox {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.totalAmount {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.warningBox {
+  background: #fff4e5;
+  border-left: 4px solid #ffa94d;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.warningText {
+  font-size: 0.85rem;
+  color: #c77d1c;
+}
+
+.transactionSearch {
+  display: flex;
+  gap: 1rem;
+}
+
+.transactionSearch input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  flex: 1;
+}
+
+.transactionList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.transactionItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  border: 1px solid #eee;
+}
+
+.transactionInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.transactionTitle {
+  font-weight: bold;
+}
+
+.statusGreen {
+  color: green;
+  font-size: 0.85rem;
+}
+
+.transactionDate {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.transactionAmount {
+  font-weight: bold;
+}
+
+.assignments {
+  font-size: 0.75rem;
+  color: #e67e22;
+}
+
+.link {
+  font-size: 0.8rem;
+  color: #5b5bd6;
+  text-decoration: underline;
+  cursor: pointer;
+}

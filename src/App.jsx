@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import OpenAccount from "./pages/OpenAccount";
-import AddPlant from "./pages/AddPlant";
-import Home from "./pages/Home";
-import Inventory from "./pages/Inventory";
+import Login from "./pages/Login";
+import BankDashboard from "./pages/BankDashboard";
+import AppLayout from "./pages/AppLayout";
 
 function App() {
   return (
@@ -14,9 +14,8 @@ function App() {
           path="open-account"
           element={<OpenAccount></OpenAccount>}
         ></Route>
-        <Route path="add-plant" element={<AddPlant></AddPlant>}></Route>
-        <Route path="home" element={<Home></Home>}></Route>
-        <Route path="inventory" element={<Inventory></Inventory>}></Route>
+        <Route path="login" element={<Login></Login>}></Route>
+        <Route path="app" element={<AppLayout></AppLayout>}></Route>
       </Routes>
     </BrowserRouter>
   );

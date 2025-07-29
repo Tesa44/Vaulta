@@ -15,8 +15,27 @@
   color: var(--color-dark--1);
 }
 
+.primaryGreen {
+  font-weight: 700;
+  background-color: var(--color-brand--1);
+  color: var(--color-dark--1);
+}
+
+.light {
+  background-color: var(--color-light-2);
+  color: var(--color-dark--1);
+  font-weight: 700;
+  border: 1px solid var(--color-dark--2);
+}
+
 .back {
   font-weight: 600;
   background: none;
   border: 1px solid currentColor;
+}
+
+.search {
+  font-weight: 600;
+  background: none;
+  border: 1px solid #ccc;
 }

@@ -1,0 +1,16 @@
+.accounts {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.header h3 {
+  font-size: 2.4rem;
+}

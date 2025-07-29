@@ -1,13 +1,17 @@
 import styles from "./OpenAccount.module.css";
+import BackButton from "../components/BackButton";
 import Button from "../components/Button";
 import PageNav from "../components/PageNav";
 
 function OpenAccount() {
   return (
     <>
-      <PageNav dark={true}></PageNav>
-      <main className={styles.login}>
+      <PageNav></PageNav>
+      <main className={styles.openAccount}>
         <section>
+          <div className={styles.backButton}>
+            <BackButton></BackButton>
+          </div>
           <h2>Open your Vaulta account</h2>
           <p>Fast. Simple. Yours. Let's get you started.</p>
           <form className={styles.form}>
