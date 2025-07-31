@@ -42,18 +42,44 @@ const transactions = [
     balanceAfter: 1329.99,
     date: "2025-07-22T11:10:00Z",
   },
+  {
+    id: "txn006",
+    title: "Transfer to Savings",
+    name: "Vaulta Savings Goal",
+    amount: -300.0,
+    balanceAfter: 1329.99,
+    date: "2025-07-22T11:10:00Z",
+  },
+  {
+    id: "txn0057",
+    title: "Transfer to Savings",
+    name: "Vaulta Savings Goal",
+    amount: -300.0,
+    balanceAfter: 1329.99,
+    date: "2025-07-22T11:10:00Z",
+  },
+  {
+    id: "txn0058",
+    title: "Transfer to Savings",
+    name: "Vaulta Savings Goal",
+    amount: -300.0,
+    balanceAfter: 1329.99,
+    date: "2025-07-22T11:10:00Z",
+  },
 ];
 
 function TransactionList() {
   return (
-    <ul className={styles.transactionList}>
-      {transactions.map((transaction) => (
-        <TransactionItem
-          transaction={transaction}
-          key={transaction.id}
-        ></TransactionItem>
-      ))}
-    </ul>
+    <div className={styles.box}>
+      <ul className={styles.transactionList}>
+        {transactions.map((transaction) => (
+          <TransactionItem
+            transaction={transaction}
+            key={transaction.id}
+          ></TransactionItem>
+        ))}
+      </ul>
+    </div>
   );
 }
 

@@ -49,7 +49,9 @@ function TransferHistory({ onSearch }) {
 
         <Button type="search">Search</Button>
       </form>
-      <TransactionList></TransactionList>
+      <div className={styles.list}>
+        <TransactionList></TransactionList>
+      </div>
     </div>
   );
 }

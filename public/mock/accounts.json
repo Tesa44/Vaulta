@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "name": "Main Account",
+    "currency": "PLN",
+    "balance": 12450.75,
+    "type": "main"
+  },
+  {
+    "id": "2",
+    "name": "Savings – EUR",
+    "currency": "EUR",
+    "balance": 350.5,
+    "type": "currency"
+  },
+  {
+    "id": "3",
+    "name": "Goal: Vacation",
+    "currency": "USD",
+    "balance": 900.0,
+    "type": "goal"
+  }
+]

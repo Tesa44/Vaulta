@@ -11,16 +11,19 @@ function AppNav() {
       </div>
       <ul>
         <li>
-          <NavLink to="/new-transfer">New transfer</NavLink>
+          <NavLink to="new-transfer">New transfer</NavLink>
         </li>
         <li>
-          <NavLink to="/cantor">Support</NavLink>
+          <NavLink to="cantor">Cantor</NavLink>
         </li>
         <li>
-          <NavLink to="/goals">My goals</NavLink>
+          <NavLink to="goals">My goals</NavLink>
         </li>
       </ul>
       <ul>
+        <li>
+          <NavLink to="account">User</NavLink>
+        </li>
         <li>
           <Button type="primary">Logout</Button>
         </li>

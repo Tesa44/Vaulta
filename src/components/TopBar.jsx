@@ -1,5 +1,6 @@
 import Button from "./Button";
 import styles from "./TopBar.module.css";
+import { Link } from "react-router-dom";
 
 function TopBar() {
   return (
@@ -13,7 +14,9 @@ function TopBar() {
         <p className={styles.transferSubheading}>
           Send money instantly with just a few clicks — anytime, anywhere.
         </p>
-        <Button type="primaryGreen">New Transfer</Button>
+        <Link to="new-transfer">
+          <Button type="primaryGreen">New transfer</Button>
+        </Link>
       </div>
 
       {/* <div className={styles.warningBox}>
