@@ -1,9 +1,18 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./AppNav.module.css";
 import Button from "./Button";
 import Logo from "./Logo";
+import { useAuth } from "../contexts/authContext";
 
 function AppNav() {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    logout();
+    navigate("/");
+  }
+
   return (
     <nav className={styles.nav}>
       <div>
@@ -22,10 +31,12 @@ function AppNav() {
       </ul>
       <ul>
         <li>
-          <NavLink to="account">User</NavLink>
+          <NavLink to="account">{user?.name}</NavLink>
         </li>
         <li>
-          <Button type="primary">Logout</Button>
+          <Button type="primary" onClick={handleLogout}>
+            Logout
+          </Button>
         </li>
       </ul>
     </nav>

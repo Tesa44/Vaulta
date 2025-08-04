@@ -8,37 +8,62 @@ import TransferHistory from "./components/TransferHistory";
 import TransferForm from "./components/TransferForm";
 import { Navigate } from "react-router-dom";
 import CurrencyExchange from "./components/CurrencyExchange";
-
+import ExchangeForm from "./components/ExchangeForm";
+import { CurrencyRatesProvider } from "./contexts/currencyRatesContext";
+import OpenAccountFormFirst from "./components/OpenAccountFormFirst";
+import OpenAccountFormSecond from "./components/OpenAccountFormSecond";
+import { AuthProvider } from "./contexts/authContext";
+import { UserAccountsProvider } from "./contexts/UserAccountsContext";
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route index element={<Homepage></Homepage>}></Route>
-        <Route
-          path="open-account"
-          element={<OpenAccount></OpenAccount>}
-        ></Route>
-        <Route path="login" element={<Login></Login>}></Route>
-        <Route path="app" element={<AppLayout></AppLayout>}>
-          <Route
-            index
-            element={<Navigate replace to="history"></Navigate>}
-          ></Route>
-          <Route
-            path="history"
-            element={<TransferHistory></TransferHistory>}
-          ></Route>
-          <Route
-            path="new-transfer"
-            element={<TransferForm></TransferForm>}
-          ></Route>
-          <Route
-            path="cantor"
-            element={<CurrencyExchange></CurrencyExchange>}
-          ></Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider>
+      <UserAccountsProvider>
+        <CurrencyRatesProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route index element={<Homepage></Homepage>}></Route>
+              <Route path="open-account" element={<OpenAccount></OpenAccount>}>
+                <Route
+                  index
+                  element={<Navigate replace to="1"></Navigate>}
+                ></Route>
+                <Route
+                  path="1"
+                  element={<OpenAccountFormFirst></OpenAccountFormFirst>}
+                ></Route>
+                <Route
+                  path="2"
+                  element={<OpenAccountFormSecond></OpenAccountFormSecond>}
+                ></Route>
+              </Route>
+              <Route path="login" element={<Login></Login>}></Route>
+              <Route path="app" element={<AppLayout></AppLayout>}>
+                <Route
+                  index
+                  element={<Navigate replace to="history"></Navigate>}
+                ></Route>
+                <Route
+                  path="history"
+                  element={<TransferHistory></TransferHistory>}
+                ></Route>
+                <Route
+                  path="new-transfer"
+                  element={<TransferForm></TransferForm>}
+                ></Route>
+                <Route
+                  path="cantor"
+                  element={<CurrencyExchange></CurrencyExchange>}
+                ></Route>
+                <Route
+                  path="exchange-form"
+                  element={<ExchangeForm></ExchangeForm>}
+                ></Route>
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </CurrencyRatesProvider>
+      </UserAccountsProvider>
+    </AuthProvider>
   );
 }
 

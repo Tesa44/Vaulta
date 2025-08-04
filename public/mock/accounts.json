@@ -4,20 +4,23 @@
     "name": "Main Account",
     "currency": "PLN",
     "balance": 12450.75,
-    "type": "main"
+    "type": "main",
+    "user_id": 1
   },
   {
     "id": "2",
     "name": "Savings – EUR",
     "currency": "EUR",
     "balance": 350.5,
-    "type": "currency"
+    "type": "currency",
+    "user_id": 1
   },
   {
     "id": "3",
     "name": "Goal: Vacation",
     "currency": "USD",
     "balance": 900.0,
-    "type": "goal"
+    "type": "goal",
+    "user_id": 1
   }
 ]

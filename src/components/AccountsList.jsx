@@ -1,15 +1,25 @@
+import { useUserAccounts } from "../contexts/UserAccountsContext";
 import styles from "./AccountsList.module.css";
 
 function AccountsList() {
+  const { accounts, currentAccount } = useUserAccounts();
+
   return (
     <ul className={styles.accountList}>
-      {[1, 2, 3, 4].map((_, i) => (
-        <li key={i} className={styles.accountCard}>
-          <div className={styles.accountLabel}>Apple pay firma</div>
+      {accounts.map((account) => (
+        <li
+          key={account.id}
+          className={`${styles.accountCard} ${
+            account.id === currentAccount.id ? styles.active : ""
+          }`}
+        >
+          <div className={styles.accountLabel}>{account.name}</div>
           <div className={styles.iban}>DE61 1001 1001 2624 6231 64</div>
           <div className={styles.amountContainer}>
             <p> Available funds</p>
-            <span className={styles.amount}>5.756,27 €</span>
+            <span className={styles.amount}>
+              {account.balance} {account.currency}
+            </span>
           </div>
         </li>
       ))}

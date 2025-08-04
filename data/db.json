@@ -1,0 +1,180 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Jan",
+      "surname": "Kowalski",
+      "email": "kowalski@gmail.com",
+      "password": "12345"
+    },
+    {
+      "name": "Maks",
+      "surname": "Kolanko",
+      "email": "maks@gmail.com",
+      "password": "qwerty",
+      "id": 2
+    }
+  ],
+  "accounts": [
+    {
+      "id": "1",
+      "name": "Main Account",
+      "currency": "PLN",
+      "balance": 12450.75,
+      "type": "main",
+      "userId": 1,
+      "transactions": [
+        {
+          "id": "txn001",
+          "title": "Dinner at La Piazza",
+          "name": "Anna Kowalska",
+          "amount": -54.3,
+          "balanceAfter": 3945.7,
+          "date": "2025-07-28T20:15:00Z"
+        },
+        {
+          "id": "txn002",
+          "title": "Salary – July",
+          "name": "Tech Solutions Ltd.",
+          "amount": 4500,
+          "balanceAfter": 4000,
+          "date": "2025-07-27T09:00:00Z"
+        },
+        {
+          "id": "txn003",
+          "title": "Rent Payment",
+          "name": "Marcin Nowak",
+          "amount": -2200,
+          "balanceAfter": 1500,
+          "date": "2025-07-25T13:30:00Z"
+        },
+        {
+          "id": "txn004",
+          "title": "Refund – Zalando",
+          "name": "Zalando SE",
+          "amount": 129.99,
+          "balanceAfter": 1629.99,
+          "date": "2025-07-23T16:45:00Z"
+        },
+        {
+          "id": "txn005",
+          "title": "Transfer to Savings",
+          "name": "Vaulta Savings Goal",
+          "amount": -300,
+          "balanceAfter": 1329.99,
+          "date": "2025-07-22T11:10:00Z"
+        },
+        {
+          "id": "txn006",
+          "title": "Transfer to Savings",
+          "name": "Vaulta Savings Goal",
+          "amount": -300,
+          "balanceAfter": 1329.99,
+          "date": "2025-07-22T11:10:00Z"
+        },
+        {
+          "id": "txn0057",
+          "title": "Transfer to Savings",
+          "name": "Vaulta Savings Goal",
+          "amount": -300,
+          "balanceAfter": 1329.99,
+          "date": "2025-07-22T11:10:00Z"
+        },
+        {
+          "id": "txn0058",
+          "title": "Transfer to Savings",
+          "name": "Vaulta Savings Goal",
+          "amount": -300,
+          "balanceAfter": 1329.99,
+          "date": "2025-07-22T11:10:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Savings – EUR",
+      "currency": "EUR",
+      "balance": 350.5,
+      "type": "currency",
+      "userId": 2,
+      "transactions": [
+        {
+          "id": "txn004",
+          "title": "Refund – Zalando",
+          "name": "Zalando SE",
+          "amount": 129.99,
+          "balanceAfter": 1629.99,
+          "date": "2025-07-23T16:45:00Z"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Goal: Vacation",
+      "currency": "USD",
+      "balance": 900,
+      "type": "goal",
+      "userId": 1,
+      "transactions": [
+        {
+          "id": "txn005",
+          "title": "Transfer to Savings",
+          "name": "Vaulta Savings Goal",
+          "amount": -300,
+          "balanceAfter": 1329.99,
+          "date": "2025-07-22T11:10:00Z"
+        },
+        {
+          "id": "txn006",
+          "title": "Transfer to Savings",
+          "name": "Vaulta Savings Goal",
+          "amount": -300,
+          "balanceAfter": 1329.99,
+          "date": "2025-07-22T11:10:00Z"
+        },
+        {
+          "id": "txn0057",
+          "title": "Transfer to Savings",
+          "name": "Vaulta Savings Goal",
+          "amount": -300,
+          "balanceAfter": 1329.99,
+          "date": "2025-07-22T11:10:00Z"
+        },
+        {
+          "id": "txn0058",
+          "title": "Transfer to Savings",
+          "name": "Vaulta Savings Goal",
+          "amount": -300,
+          "balanceAfter": 1329.99,
+          "date": "2025-07-22T11:10:00Z"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Main Account",
+      "currency": "USD",
+      "balance": 5335.75,
+      "type": "main",
+      "userId": 2,
+      "transactions": [
+        {
+          "id": "txn001",
+          "title": "Dinner at La Piazza",
+          "name": "Anna Kowalska",
+          "amount": -54.3,
+          "balanceAfter": 3945.7,
+          "date": "2025-07-28T20:15:00Z"
+        },
+        {
+          "id": "txn002",
+          "title": "Salary – July",
+          "name": "Tech Solutions Ltd.",
+          "amount": 4500,
+          "balanceAfter": 4000,
+          "date": "2025-07-27T09:00:00Z"
+        }
+      ]
+    }
+  ]
+}

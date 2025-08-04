@@ -1,32 +1,98 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
+import { useAuth } from "./authContext";
+
+const BASE_URL = "http://localhost:8000";
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "loading":
+      return { ...state, loading: true };
+
+    case "accounts/loaded":
+      return { ...state, accounts: action.payload, loading: false };
+
+    case "accounts/add":
+      return {
+        ...state,
+        accounts: [...state.accounts, action.payload],
+        loading: false,
+      };
+
+    case "accounts/setCurrent":
+      return { ...state, currentAccount: action.payload, loading: false };
+
+    case "rejected":
+      return { ...state, loading: false, error: action.payload };
+
+    default:
+      throw new Error("Unknown action type");
+  }
+}
 
 // Kontekst
 const UserAccountsContext = createContext();
 
+const initialState = {
+  accounts: [],
+  currentAccount: {},
+  error: "",
+  loading: false,
+};
+
 // Provider
 function UserAccountsProvider({ children }) {
-  const [accounts, setAccounts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [{ accounts, currentAccount, error, loading }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
 
-  // Fetch z mocka (zastąpisz potem realnym API)
+  const { user } = useAuth();
+
   useEffect(() => {
+    if (!user) return;
+
     async function fetchAccounts() {
+      dispatch({ type: "loading" });
       try {
-        const response = await fetch("/mock/accounts.json");
+        const response = await fetch(`${BASE_URL}/accounts?userId=${user.id}`);
         const data = await response.json();
-        setAccounts(data);
+        dispatch({ type: "accounts/loaded", payload: data });
+
+        const mainAccount = data.find((acc) => acc.type === "main");
+        if (mainAccount) {
+          dispatch({ type: "accounts/setCurrent", payload: mainAccount });
+        }
       } catch (err) {
-        console.error("Error loading accounts:", err);
-      } finally {
-        setLoading(false);
+        dispatch({
+          type: "rejected",
+          payload: "There was an error loading data ...",
+        });
+        console.error(err);
       }
     }
 
     fetchAccounts();
-  }, []);
+  }, [user]);
+
+  function addAccount(account) {
+    dispatch({ type: "accounts/add", payload: account });
+  }
+
+  function setCurrentAccount(account) {
+    dispatch({ type: "accounts/setCurrent", payload: account });
+  }
 
   return (
-    <UserAccountsContext.Provider value={{ accounts, loading }}>
+    <UserAccountsContext.Provider
+      value={{
+        accounts,
+        currentAccount,
+        error,
+        loading,
+        addAccount,
+        setCurrentAccount,
+      }}
+    >
       {children}
     </UserAccountsContext.Provider>
   );

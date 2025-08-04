@@ -10,6 +10,7 @@
   border-radius: 6px;
   margin-bottom: 1rem;
   background: #f9faff;
+  cursor: pointer;
 }
 
 .amountContainer {
@@ -37,4 +38,9 @@
 .iban {
   font-size: 1.6rem;
   color: var(color-dark--2);
+}
+
+.active {
+  border: 2px solid var(--color-brand--1);
+  background-color: #ebfbee;
 }

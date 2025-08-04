@@ -1,6 +1,7 @@
 // src/data/currencies.js
 
 export const topCurrencies = [
+  { code: "PLN", name: "Polish Zloty" },
   { code: "USD", name: "United States Dollar" },
   { code: "EUR", name: "Euro" },
   { code: "GBP", name: "British Pound" },

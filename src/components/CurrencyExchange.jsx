@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { topCurrencies } from "../data/currencies";
+import { useEffect, useState, useMemo } from "react";
+
 import styles from "./CurrencyExchange.module.css";
 import {
   LineChart,
@@ -12,65 +12,46 @@ import {
 } from "recharts";
 import BackButton from "./BackButton";
 import Button from "./Button";
-
-const baseCurrency = "PLN";
+import { useNavigate } from "react-router-dom";
+import { useCurrencyRates } from "../contexts/currencyRatesContext";
 
 export default function CurrencyExchange() {
-  const [rates, setRates] = useState({});
-  const [history, setHistory] = useState({});
-  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-
-  const filteredCurrencies = topCurrencies.filter(
-    (c) => c.code !== baseCurrency
-  );
+  const navigate = useNavigate();
+  const {
+    baseCurrency,
+    rates,
+    buyRates,
+    sellRates,
+    history,
+    loading,
+    filteredCurrencies,
+  } = useCurrencyRates();
 
   const totalPages = filteredCurrencies.length;
   const currency = filteredCurrencies[currentPage - 1];
-  useEffect(function () {
-    async function fetchRates() {
-      const res = await fetch(
-        `https://api.frankfurter.app/latest?from=${baseCurrency}&to=${filteredCurrencies
-          .map((cur) => cur.code)
-          .join(",")}`
-      );
-      const data = await res.json();
-      setRates(data.rates);
-      console.log(data.rates);
-    }
 
-    async function fetchHistory() {
-      const start = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
-        .toISOString()
-        .slice(0, 10);
+  function handleBuy() {
+    navigate("exchange-form", {
+      state: {
+        type: "buy",
+        currency: currency.code,
+        rate: rates[currency.code],
+        baseCurrency: "PLN",
+      },
+    });
+  }
 
-      const res = await fetch(
-        `https://api.frankfurter.app/${start}..?from=${baseCurrency}&to=${filteredCurrencies
-          .map((cur) => cur.code)
-          .join(",")}`
-      );
-
-      const data = await res.json();
-      const histArr = Object.entries(data.rates).map(([date, allRates]) => {
-        const invertedRates = Object.fromEntries(
-          Object.entries(allRates).map(([key, value]) => [
-            key,
-            Math.pow(value, -1).toFixed(5),
-          ])
-        );
-        return {
-          date,
-          ...invertedRates,
-        };
-      });
-
-      setHistory(histArr);
-      setLoading(false);
-    }
-
-    fetchRates();
-    fetchHistory();
-  }, []);
+  function handleSell() {
+    navigate("exchange-form", {
+      state: {
+        type: "sell",
+        currency: currency.code,
+        rate: rates[currency.code],
+        baseCurrency: "PLN",
+      },
+    });
+  }
 
   return (
     <div className={styles.exchangeContainer}>
@@ -82,7 +63,7 @@ export default function CurrencyExchange() {
         <h4>
           {currency.code} / {baseCurrency}
         </h4>
-        <p>Current rate: {Math.pow(rates[currency.code], -1).toFixed(5)}</p>
+        <p>Current rate: {rates[currency.code]}</p>
 
         <div className={styles.chart}>
           {loading ? (
@@ -100,7 +81,7 @@ export default function CurrencyExchange() {
                 <Line
                   type="monotone"
                   dataKey={currency.code}
-                  stroke="#0f62fe"
+                  stroke="#7048e8"
                   strokeWidth={2}
                 />
               </LineChart>
@@ -109,11 +90,11 @@ export default function CurrencyExchange() {
         </div>
 
         <div className={styles.actions}>
-          <Button type="buySell">
-            Sell {currency.code} <span>3.63465</span>
+          <Button type="buySell" onClick={handleSell}>
+            Sell {currency.code} <span>{sellRates[currency.code]}</span>
           </Button>
-          <Button type="buySell">
-            Buy {currency.code} <span>3.745356</span>
+          <Button type="buySell" onClick={handleBuy}>
+            Buy {currency.code} <span>{buyRates[currency.code]}</span>
           </Button>
         </div>
       </div>
