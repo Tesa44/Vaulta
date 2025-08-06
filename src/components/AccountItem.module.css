@@ -1,0 +1,40 @@
+.accountCard {
+  padding: 1.8rem;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  background: #f9faff;
+  cursor: pointer;
+}
+
+.amountContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.amountContainer p {
+  font-size: 1.4rem;
+  color: var(--color-light--1);
+}
+
+.amount {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.accountLabel {
+  color: var(--color-dark--1);
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.iban {
+  font-size: 1.6rem;
+  color: var(color-dark--2);
+}
+
+.active {
+  border: 2px solid var(--color-brand--1);
+  background-color: #ebfbee;
+}
