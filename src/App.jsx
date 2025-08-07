@@ -2,10 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import OpenAccount from "./pages/OpenAccount";
 import Login from "./pages/Login";
-import BankDashboard from "./pages/BankDashboard";
 import AppLayout from "./pages/AppLayout";
 import TransferHistory from "./components/TransferHistory";
-import TransferForm from "./components/TransferForm";
+import NewTransfer from "./components/NewTransfer";
 import { Navigate } from "react-router-dom";
 import CurrencyExchange from "./components/CurrencyExchange";
 import ExchangeForm from "./components/ExchangeForm";
@@ -14,6 +13,12 @@ import OpenAccountFormFirst from "./components/OpenAccountFormFirst";
 import OpenAccountFormSecond from "./components/OpenAccountFormSecond";
 import { AuthProvider } from "./contexts/authContext";
 import { UserAccountsProvider } from "./contexts/UserAccountsContext";
+import NewAccountLayout from "./pages/NewAccountLayout";
+import AccountTypePicker from "./components/AccountTypePicker";
+import CurrencyAccountForm from "./components/CurrencyAccountForm";
+import GoalAccountForm from "./components/GoalAccountForm";
+import GoalAccountDetails from "./components/GoalAccountDetails";
+
 function App() {
   return (
     <AuthProvider>
@@ -48,7 +53,7 @@ function App() {
                 ></Route>
                 <Route
                   path="new-transfer"
-                  element={<TransferForm></TransferForm>}
+                  element={<NewTransfer></NewTransfer>}
                 ></Route>
                 <Route
                   path="cantor"
@@ -58,6 +63,27 @@ function App() {
                   path="exchange-form"
                   element={<ExchangeForm></ExchangeForm>}
                 ></Route>
+                <Route
+                  path="goal-progress"
+                  element={<GoalAccountDetails></GoalAccountDetails>}
+                ></Route>
+                <Route
+                  path="new-account"
+                  element={<NewAccountLayout></NewAccountLayout>}
+                >
+                  <Route
+                    index
+                    element={<AccountTypePicker></AccountTypePicker>}
+                  ></Route>
+                  <Route
+                    path="currency"
+                    element={<CurrencyAccountForm></CurrencyAccountForm>}
+                  ></Route>
+                  <Route
+                    path="goal"
+                    element={<GoalAccountForm></GoalAccountForm>}
+                  ></Route>
+                </Route>
               </Route>
             </Routes>
           </BrowserRouter>

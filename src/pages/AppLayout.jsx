@@ -2,8 +2,6 @@ import { Outlet } from "react-router-dom";
 import Accounts from "../components/Accounts";
 import AppNav from "../components/AppNav";
 import TopBar from "../components/TopBar";
-import TransferForm from "../components/TransferForm";
-import TransferHistory from "../components/TransferHistory";
 import styles from "./AppLayout.module.css";
 
 function AppLayout() {

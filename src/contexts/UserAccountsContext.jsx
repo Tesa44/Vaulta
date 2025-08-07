@@ -3,6 +3,17 @@ import { useAuth } from "./authContext";
 
 const BASE_URL = "http://localhost:8000";
 
+function generateFakeIBAN() {
+  const country = "PL"; // Country
+  const checksum = Math.floor(10 + Math.random() * 89); // check sum
+  const bankCode = Math.floor(10000000 + Math.random() * 90000000); // 8 cyfr
+  const accountNumber = Math.floor(
+    1000000000000000 + Math.random() * 9000000000000000
+  ); // 16 cyfr
+
+  return `${country}${checksum}${bankCode}${accountNumber}`;
+}
+
 function reducer(state, action) {
   switch (action.type) {
     case "loading":
@@ -20,6 +31,15 @@ function reducer(state, action) {
 
     case "accounts/setCurrent":
       return { ...state, currentAccount: action.payload, loading: false };
+
+    case "accounts/updateCurrent":
+      return {
+        ...state,
+        currentAccount: action.payload,
+        accounts: state.accounts.map((acc) =>
+          acc.id === action.payload.id ? action.payload : acc
+        ),
+      };
 
     case "rejected":
       return { ...state, loading: false, error: action.payload };
@@ -74,12 +94,142 @@ function UserAccountsProvider({ children }) {
     fetchAccounts();
   }, [user]);
 
-  function addAccount(account) {
-    dispatch({ type: "accounts/add", payload: account });
+  async function addAccount({ name, currency, balance, type, targetAmount }) {
+    dispatch({ type: "loading" });
+
+    const accountData = {
+      iban: generateFakeIBAN(),
+      name,
+      currency,
+      balance,
+      type,
+      userId: user.id,
+      transactions: [
+        {
+          id: crypto.randomUUID(),
+          title: "Initial deposit",
+          name: `${user.name} ${user.surname}`,
+          amount: balance,
+          balanceAfter: balance,
+          date: new Date().toISOString(),
+        },
+      ],
+      ...(type === "goal" && { targetAmount }),
+    };
+
+    try {
+      const res = await fetch(`${BASE_URL}/accounts`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(accountData),
+      });
+
+      const newAccount = await res.json();
+
+      dispatch({ type: "accounts/add", payload: newAccount });
+      dispatch({ type: "accounts/setCurrent", payload: newAccount });
+    } catch (err) {
+      dispatch({
+        type: "rejected",
+        payload: `Could not create account ${err.message}`,
+      });
+    }
   }
 
   function setCurrentAccount(account) {
     dispatch({ type: "accounts/setCurrent", payload: account });
+  }
+
+  async function findAccountByIBAN(iban) {
+    try {
+      const res = await fetch(`${BASE_URL}/accounts?iban=${iban}`);
+      if (!res.ok) throw new Error("Failed to fetch");
+      const data = await res.json();
+      return data.length > 0 ? data[0] : null;
+    } catch (err) {
+      dispatch({ type: "rejected", payload: err.message });
+      return null;
+    }
+  }
+
+  async function transferMoney(receiverIban, amount, title, receiverName) {
+    dispatch({ type: "loading" });
+
+    try {
+      const receiverAccount = await findAccountByIBAN(receiverIban);
+
+      if (receiverAccount === null) throw new Error("Could not find account");
+
+      if (currentAccount.currency !== receiverAccount.currency)
+        throw new Error(
+          `Currencies do not match. (${receiverAccount.currency})`
+        );
+
+      if (amount <= 0) {
+        throw new Error("Transfer amount must be greater than 0.");
+      }
+
+      if (amount > currentAccount.balance) {
+        throw new Error("Insufficient funds.");
+      }
+
+      const newFromBalance = currentAccount.balance - amount;
+      const newToBalance = receiverAccount.balance + amount;
+      const now = new Date().toISOString();
+
+      const fromTransaction = {
+        id: crypto.randomUUID(),
+        title,
+        name: receiverName,
+        amount: -amount,
+        balanceAfter: newFromBalance,
+        date: now,
+      };
+
+      const toTransaction = {
+        id: crypto.randomUUID(),
+        title,
+        name: `${user.name} ${user.surname}`,
+        amount: amount,
+        balanceAfter: newToBalance,
+        date: now,
+      };
+
+      const updatedCurrentAccount = {
+        ...currentAccount,
+        balance: newFromBalance,
+        transactions: [...currentAccount.transactions, fromTransaction],
+      };
+      dispatch({
+        type: "accounts/updateCurrent",
+        payload: updatedCurrentAccount,
+      });
+
+      const updatedReceiverAccounts = {
+        ...receiverAccount,
+        balance: newToBalance,
+        transactions: [receiverAccount.transactions, toTransaction],
+      };
+
+      console.log(updatedCurrentAccount);
+      console.log(updatedReceiverAccounts);
+
+      await Promise.all([
+        fetch(`${BASE_URL}/accounts/${currentAccount.id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedCurrentAccount),
+        }),
+        fetch(`${BASE_URL}/accounts/${receiverAccount.id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedReceiverAccounts),
+        }),
+      ]);
+    } catch (err) {
+      dispatch({ type: "rejected", payload: err.message });
+      console.error(err.message);
+    }
   }
 
   return (
@@ -91,6 +241,7 @@ function UserAccountsProvider({ children }) {
         loading,
         addAccount,
         setCurrentAccount,
+        transferMoney,
       }}
     >
       {children}

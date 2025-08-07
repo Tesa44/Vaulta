@@ -10,7 +10,9 @@ function Accounts() {
       </div>
 
       <AccountsList></AccountsList>
-      <Button type="light">+ Add New</Button>
+      <Button type="light" to="new-account">
+        + Add New
+      </Button>
     </div>
   );
 }

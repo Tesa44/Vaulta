@@ -7,6 +7,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .primary {
@@ -40,7 +41,7 @@
   border: 1px solid #ccc;
 }
 
-.buySell {
+.big {
   background: none;
   text-transform: none;
   font-weight: 600;
@@ -54,12 +55,12 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 }
 
-.buySell span {
+.big span {
   font-size: 2rem;
   font-weight: 700;
 }
 
-.buySell:hover {
+.big:hover {
   background-color: var(--color-light--2);
 }
 

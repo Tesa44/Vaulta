@@ -18,9 +18,10 @@
   "accounts": [
     {
       "id": "1",
+      "iban": "PL45 12345678 1234567890123456",
       "name": "Main Account",
       "currency": "PLN",
-      "balance": 12450.75,
+      "balance": 12150.75,
       "type": "main",
       "userId": 1,
       "transactions": [
@@ -87,11 +88,36 @@
           "amount": -300,
           "balanceAfter": 1329.99,
           "date": "2025-07-22T11:10:00Z"
+        },
+        {
+          "id": "a54b33f0-d546-4852-bd0c-25584fd8f3b6",
+          "title": "test-03",
+          "name": "Maks",
+          "amount": -100,
+          "balanceAfter": 12350.75,
+          "date": "2025-08-07T16:39:08.596Z"
+        },
+        {
+          "id": "ea901c0b-9255-4df0-b22a-c26dc92d60bd",
+          "title": "test-04",
+          "name": "ffff",
+          "amount": -100,
+          "balanceAfter": 12250.75,
+          "date": "2025-08-07T16:41:26.977Z"
+        },
+        {
+          "id": "e488c4d5-3e5c-4a48-ac2c-2d6fdad622a5",
+          "title": "Test-05",
+          "name": "Maks Kolanko",
+          "amount": -100,
+          "balanceAfter": 12150.75,
+          "date": "2025-08-07T16:45:40.767Z"
         }
       ]
     },
     {
       "id": "2",
+      "iban": "PL45 12345678 123456789058323",
       "name": "Savings – EUR",
       "currency": "EUR",
       "balance": 350.5,
@@ -109,72 +135,81 @@
       ]
     },
     {
-      "id": "3",
-      "name": "Goal: Vacation",
-      "currency": "USD",
-      "balance": 900,
-      "type": "goal",
-      "userId": 1,
+      "id": "4",
+      "iban": "PL45 12345678 12345678566654321",
+      "name": "Main Account",
+      "currency": "PLN",
+      "balance": 1100,
+      "type": "main",
+      "userId": 2,
       "transactions": [
+        [
+          [
+            [
+              {
+                "id": "txn001",
+                "title": "Dinner at La Piazza",
+                "name": "Anna Kowalska",
+                "amount": -54.3,
+                "balanceAfter": 3945.7,
+                "date": "2025-07-28T20:15:00Z"
+              },
+              {
+                "id": "txn002",
+                "title": "Salary – July",
+                "name": "Tech Solutions Ltd.",
+                "amount": 4500,
+                "balanceAfter": 4000,
+                "date": "2025-07-27T09:00:00Z"
+              }
+            ],
+            {
+              "id": "78dcbf29-60bb-44d4-a6eb-4dde09c12d00",
+              "title": "test-03",
+              "name": "Jan Kowalski",
+              "amount": "100",
+              "balanceAfter": "5335.75100",
+              "date": "2025-08-07T16:39:08.596Z"
+            }
+          ],
+          {
+            "id": "422971b2-5c5f-45f5-be50-9a3179fa149a",
+            "title": "test-04",
+            "name": "Jan Kowalski",
+            "amount": "100",
+            "balanceAfter": "5335.75100100",
+            "date": "2025-08-07T16:41:26.977Z"
+          }
+        ],
         {
-          "id": "txn005",
-          "title": "Transfer to Savings",
-          "name": "Vaulta Savings Goal",
-          "amount": -300,
-          "balanceAfter": 1329.99,
-          "date": "2025-07-22T11:10:00Z"
-        },
-        {
-          "id": "txn006",
-          "title": "Transfer to Savings",
-          "name": "Vaulta Savings Goal",
-          "amount": -300,
-          "balanceAfter": 1329.99,
-          "date": "2025-07-22T11:10:00Z"
-        },
-        {
-          "id": "txn0057",
-          "title": "Transfer to Savings",
-          "name": "Vaulta Savings Goal",
-          "amount": -300,
-          "balanceAfter": 1329.99,
-          "date": "2025-07-22T11:10:00Z"
-        },
-        {
-          "id": "txn0058",
-          "title": "Transfer to Savings",
-          "name": "Vaulta Savings Goal",
-          "amount": -300,
-          "balanceAfter": 1329.99,
-          "date": "2025-07-22T11:10:00Z"
+          "id": "fd838640-69b6-4dab-92a5-4c0b1e331980",
+          "title": "Test-05",
+          "name": "Jan Kowalski",
+          "amount": 100,
+          "balanceAfter": 1100,
+          "date": "2025-08-07T16:45:40.767Z"
         }
       ]
     },
     {
-      "id": "4",
-      "name": "Main Account",
-      "currency": "USD",
-      "balance": 5335.75,
-      "type": "main",
-      "userId": 2,
+      "name": "test111",
+      "iban": "PL45 12345678 1234567895556041",
+      "currency": "PLN",
+      "balance": "333",
+      "type": "goal",
+      "userId": 1,
       "transactions": [
         {
-          "id": "txn001",
-          "title": "Dinner at La Piazza",
-          "name": "Anna Kowalska",
-          "amount": -54.3,
-          "balanceAfter": 3945.7,
-          "date": "2025-07-28T20:15:00Z"
-        },
-        {
-          "id": "txn002",
-          "title": "Salary – July",
-          "name": "Tech Solutions Ltd.",
-          "amount": 4500,
-          "balanceAfter": 4000,
-          "date": "2025-07-27T09:00:00Z"
+          "id": "d512b124-e4d9-4d9c-be74-00017b4c9584",
+          "title": "Initial deposit",
+          "name": "Jan Kowalski",
+          "amount": "333",
+          "balanceAfter": "333",
+          "date": "2025-08-06T17:17:05.783Z"
         }
-      ]
+      ],
+      "targetAmount": "10000",
+      "id": "iSDfG0z"
     }
   ]
 }

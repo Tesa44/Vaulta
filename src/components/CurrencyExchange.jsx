@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useState } from "react";
 
 import styles from "./CurrencyExchange.module.css";
 import {
@@ -90,10 +90,10 @@ export default function CurrencyExchange() {
         </div>
 
         <div className={styles.actions}>
-          <Button type="buySell" onClick={handleSell}>
+          <Button type="big" onClick={handleSell}>
             Sell {currency.code} <span>{sellRates[currency.code]}</span>
           </Button>
-          <Button type="buySell" onClick={handleBuy}>
+          <Button type="big" onClick={handleBuy}>
             Buy {currency.code} <span>{buyRates[currency.code]}</span>
           </Button>
         </div>
