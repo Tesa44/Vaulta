@@ -9,15 +9,11 @@ function AppLayout() {
     <div className={styles.dashboard}>
       <AppNav></AppNav>
       <main className={styles.main}>
-        <div className={styles.contentGrid}>
-          <Accounts></Accounts>
-          <section className={styles.details}>
-            <TopBar></TopBar>
-            {/* <TransferHistory></TransferHistory> */}
-            {/* <TransferForm></TransferForm> */}
-            <Outlet></Outlet>
-          </section>
-        </div>
+        <Accounts></Accounts>
+        <section className={styles.details}>
+          <TopBar></TopBar>
+          <Outlet></Outlet>
+        </section>
       </main>
     </div>
   );

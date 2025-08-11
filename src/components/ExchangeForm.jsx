@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./ExchangeForm.module.css";
 import { useUserAccounts } from "../contexts/UserAccountsContext";
@@ -29,15 +29,7 @@ export default function ExchangeForm() {
   const selectableAccounts = getAccountsByCurrency(currency);
 
   function handleSelectChange(e) {
-    const selectedId = e.target.value;
-    setSelectedAccountId(selectedId);
-
-    if (type === "sell") {
-      const account = accounts.find((acc) => acc.id === selectedId);
-      if (account) {
-        setCurrentAccount(account);
-      }
-    }
+    setSelectedAccountId(e.target.value);
   }
 
   async function handleSubmit(e) {

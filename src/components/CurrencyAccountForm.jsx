@@ -69,7 +69,7 @@ function CurrencyAccountForm() {
             type="number"
             id="deposit"
             value={deposit}
-            onChange={(e) => setDeposit(e.target.value)}
+            onChange={(e) => setDeposit(Number(e.target.value))}
           ></input>
         </div>
         {error && <p className={styles.error}>{error}</p>}

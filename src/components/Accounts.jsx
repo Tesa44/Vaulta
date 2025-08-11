@@ -7,12 +7,13 @@ function Accounts() {
     <div className={styles.accounts}>
       <div className={styles.header}>
         <h3>My active accounts</h3>
+        <Button type="light" to="new-account">
+          + Add New
+        </Button>
       </div>
-
-      <AccountsList></AccountsList>
-      <Button type="light" to="new-account">
-        + Add New
-      </Button>
+      <div className={styles.list}>
+        <AccountsList></AccountsList>
+      </div>
     </div>
   );
 }

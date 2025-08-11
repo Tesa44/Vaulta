@@ -63,7 +63,7 @@ function GoalAccountForm() {
             type="number"
             id="targetAmount"
             value={targetAmount}
-            onChange={(e) => setTargetAmount(e.target.value)}
+            onChange={(e) => setTargetAmount(Number(e.target.value))}
           ></input>
         </div>
         <div className={styles.row}>
@@ -72,7 +72,7 @@ function GoalAccountForm() {
             type="number"
             id="deposit"
             value={deposit}
-            onChange={(e) => setDeposit(e.target.value)}
+            onChange={(e) => setDeposit(Number(e.target.value))}
           ></input>
         </div>
         {error && <p className={styles.error}>{error}</p>}

@@ -21,7 +21,7 @@
       "iban": "PL45 12345678 1234567890123456",
       "name": "Main Account",
       "currency": "PLN",
-      "balance": 12000.75,
+      "balance": 11700.75,
       "type": "main",
       "userId": 1,
       "transactions": [
@@ -120,6 +120,30 @@
           "amount": -150,
           "balanceAfter": 12000.75,
           "date": "2025-08-07T20:28:17.113Z"
+        },
+        {
+          "id": "d3fee6eb-20f6-451b-a4fd-7b7724e61ff6",
+          "title": "Currency purchase",
+          "name": "Main Account to Currency EUR",
+          "amount": -100,
+          "balanceAfter": 11900.75,
+          "date": "2025-08-11T08:33:05.974Z"
+        },
+        {
+          "id": "83eaf6c8-8905-4dc1-9d7a-3a5ca08dae5a",
+          "title": "Currency purchase",
+          "name": "Main Account to Currency USD",
+          "amount": -100,
+          "balanceAfter": 11800.75,
+          "date": "2025-08-11T08:38:54.124Z"
+        },
+        {
+          "id": "2559ffff-4063-4304-b65a-2bc8b3125751",
+          "title": "Currency purchase",
+          "name": "Main Account to Czech",
+          "amount": -100,
+          "balanceAfter": 11700.75,
+          "date": "2025-08-11T10:17:43.174Z"
         }
       ]
     },
@@ -225,7 +249,7 @@
       "iban": "PL91639107953934434623103493",
       "name": "Currency EUR",
       "currency": "EUR",
-      "balance": "100",
+      "balance": "10023.52",
       "type": "currency",
       "userId": 1,
       "transactions": [
@@ -236,9 +260,98 @@
           "amount": "100",
           "balanceAfter": "100",
           "date": "2025-08-07T22:21:24.482Z"
+        },
+        {
+          "id": "3b6b7857-e868-4a2d-b027-1bf93ae66a82",
+          "title": "Currency purchase",
+          "name": "Jan Kowalski",
+          "amount": "23.52",
+          "balanceAfter": "10023.52",
+          "date": "2025-08-11T08:33:05.974Z"
         }
       ],
       "id": "aCJpo3L"
+    },
+    {
+      "iban": "PL76815796944675490438760226",
+      "name": "Currency USD",
+      "currency": "USD",
+      "balance": "25027.4",
+      "type": "currency",
+      "userId": 1,
+      "transactions": [
+        {
+          "id": "6345be1d-7195-459d-8beb-3a5360046de3",
+          "title": "Initial deposit",
+          "name": "Jan Kowalski",
+          "amount": "250",
+          "balanceAfter": "250",
+          "date": "2025-08-11T08:38:26.557Z"
+        },
+        {
+          "id": "941d1f6e-0de8-4fc6-b52c-bef873352362",
+          "title": "Currency purchase",
+          "name": "Jan Kowalski",
+          "amount": 27.4,
+          "balanceAfter": "25027.4",
+          "date": "2025-08-11T08:38:54.124Z"
+        }
+      ],
+      "id": "0u7bV3g"
+    },
+    {
+      "iban": "PL12611686998608394402550651",
+      "name": "Currency ",
+      "currency": "CHF",
+      "balance": 122.14,
+      "type": "currency",
+      "userId": 1,
+      "transactions": [
+        {
+          "id": "a1bef407-a04a-44fe-bbf6-7a6c5460793e",
+          "title": "Initial deposit",
+          "name": "Jan Kowalski",
+          "amount": 100,
+          "balanceAfter": 100,
+          "date": "2025-08-11T08:47:15.363Z"
+        },
+        {
+          "id": "c6ac2756-0500-42db-b4b3-a822effadf75",
+          "title": "Currency purchase",
+          "name": "Jan Kowalski",
+          "amount": 22.14,
+          "balanceAfter": 122.14,
+          "date": "2025-08-11T08:47:42.214Z"
+        }
+      ],
+      "id": "xot-RlU"
+    },
+    {
+      "iban": "PL11600111042604215623663004",
+      "name": "Czech",
+      "currency": "CZK",
+      "balance": 675.08,
+      "type": "currency",
+      "userId": 1,
+      "transactions": [
+        {
+          "id": "700450bc-e033-48d5-ac62-ec3c718ff402",
+          "title": "Initial deposit",
+          "name": "Jan Kowalski",
+          "amount": 100,
+          "balanceAfter": 100,
+          "date": "2025-08-11T10:17:14.278Z"
+        },
+        {
+          "id": "13ba7a97-8f8d-4897-a0f8-9e54dbd51798",
+          "title": "Currency purchase",
+          "name": "Jan Kowalski",
+          "amount": 575.08,
+          "balanceAfter": 675.08,
+          "date": "2025-08-11T10:17:43.174Z"
+        }
+      ],
+      "id": "68eXAde"
     }
   ]
 }

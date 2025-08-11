@@ -172,24 +172,24 @@ function UserAccountsProvider({ children }) {
       if (receiverAccount === null) throw new Error("Could not find account");
 
       if (
-        allowDifferentCurrencies ||
+        !allowDifferentCurrencies &&
         currentAccount.currency !== receiverAccount.currency
       )
         throw new Error(
           `Currencies do not match. (${receiverAccount.currency})`
         );
 
-      if (amount <= 0) {
+      if (Number(amount) <= 0) {
         throw new Error("Transfer amount must be greater than 0.");
       }
 
-      if (amount > currentAccount.balance) {
+      if (Number(amount) > currentAccount.balance) {
         throw new Error("Insufficient funds.");
       }
 
       const newFromBalance = currentAccount.balance - amount;
       const newToBalance =
-        receiverAccount.balance + (convertedAmount || amount);
+        receiverAccount.balance + Number(convertedAmount || amount);
       const now = new Date().toISOString();
 
       const fromTransaction = {
@@ -205,7 +205,7 @@ function UserAccountsProvider({ children }) {
         id: crypto.randomUUID(),
         title,
         name: `${user.name} ${user.surname}`,
-        amount: convertedAmount || amount,
+        amount: Number(convertedAmount || amount),
         balanceAfter: newToBalance,
         date: now,
       };
