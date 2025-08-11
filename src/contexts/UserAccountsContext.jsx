@@ -35,6 +35,7 @@ function reducer(state, action) {
     case "accounts/updateCurrent":
       return {
         ...state,
+        error: "",
         currentAccount: action.payload,
         accounts: state.accounts.map((acc) =>
           acc.id === action.payload.id ? action.payload : acc
@@ -43,6 +44,10 @@ function reducer(state, action) {
 
     case "rejected":
       return { ...state, loading: false, error: action.payload };
+
+    case "clearError": {
+      return { ...state, error: "" };
+    }
 
     default:
       throw new Error("Unknown action type");
@@ -152,7 +157,13 @@ function UserAccountsProvider({ children }) {
     }
   }
 
-  async function transferMoney(receiverIban, amount, title, receiverName) {
+  async function transferMoney(
+    receiverIban,
+    amount,
+    title,
+    receiverName,
+    { allowDifferentCurrencies = false, convertedAmount = null } = {}
+  ) {
     dispatch({ type: "loading" });
 
     try {
@@ -160,7 +171,10 @@ function UserAccountsProvider({ children }) {
 
       if (receiverAccount === null) throw new Error("Could not find account");
 
-      if (currentAccount.currency !== receiverAccount.currency)
+      if (
+        allowDifferentCurrencies ||
+        currentAccount.currency !== receiverAccount.currency
+      )
         throw new Error(
           `Currencies do not match. (${receiverAccount.currency})`
         );
@@ -174,7 +188,8 @@ function UserAccountsProvider({ children }) {
       }
 
       const newFromBalance = currentAccount.balance - amount;
-      const newToBalance = receiverAccount.balance + amount;
+      const newToBalance =
+        receiverAccount.balance + (convertedAmount || amount);
       const now = new Date().toISOString();
 
       const fromTransaction = {
@@ -190,7 +205,7 @@ function UserAccountsProvider({ children }) {
         id: crypto.randomUUID(),
         title,
         name: `${user.name} ${user.surname}`,
-        amount: amount,
+        amount: convertedAmount || amount,
         balanceAfter: newToBalance,
         date: now,
       };
@@ -208,11 +223,8 @@ function UserAccountsProvider({ children }) {
       const updatedReceiverAccounts = {
         ...receiverAccount,
         balance: newToBalance,
-        transactions: [receiverAccount.transactions, toTransaction],
+        transactions: [...receiverAccount.transactions, toTransaction],
       };
-
-      console.log(updatedCurrentAccount);
-      console.log(updatedReceiverAccounts);
 
       await Promise.all([
         fetch(`${BASE_URL}/accounts/${currentAccount.id}`, {
@@ -226,10 +238,30 @@ function UserAccountsProvider({ children }) {
           body: JSON.stringify(updatedReceiverAccounts),
         }),
       ]);
+      return true;
     } catch (err) {
       dispatch({ type: "rejected", payload: err.message });
       console.error(err.message);
+      return false;
     }
+  }
+
+  function clearError() {
+    dispatch({ type: "clearError" });
+  }
+
+  function getMainAccount() {
+    return accounts.find((acc) => acc.type === "main");
+  }
+
+  function getAccountsByCurrency(currency) {
+    return accounts.filter((acc) => acc.currency === currency);
+  }
+
+  function getBaseCurrency() {
+    const mainAccount = getMainAccount();
+    if (mainAccount) return mainAccount.currency;
+    return null;
   }
 
   return (
@@ -242,6 +274,10 @@ function UserAccountsProvider({ children }) {
         addAccount,
         setCurrentAccount,
         transferMoney,
+        clearError,
+        getMainAccount,
+        getAccountsByCurrency,
+        getBaseCurrency,
       }}
     >
       {children}

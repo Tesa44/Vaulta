@@ -21,7 +21,7 @@
       "iban": "PL45 12345678 1234567890123456",
       "name": "Main Account",
       "currency": "PLN",
-      "balance": 12150.75,
+      "balance": 12000.75,
       "type": "main",
       "userId": 1,
       "transactions": [
@@ -112,6 +112,14 @@
           "amount": -100,
           "balanceAfter": 12150.75,
           "date": "2025-08-07T16:45:40.767Z"
+        },
+        {
+          "id": "5c735529-4258-4e1e-bade-b6b03955fb60",
+          "title": "Fast Transfer via Vaulta",
+          "name": "Maks Kolanko",
+          "amount": -150,
+          "balanceAfter": 12000.75,
+          "date": "2025-08-07T20:28:17.113Z"
         }
       ]
     },
@@ -139,48 +147,42 @@
       "iban": "PL45 12345678 12345678566654321",
       "name": "Main Account",
       "currency": "PLN",
-      "balance": 1100,
+      "balance": 1250,
       "type": "main",
       "userId": 2,
       "transactions": [
-        [
-          [
-            [
-              {
-                "id": "txn001",
-                "title": "Dinner at La Piazza",
-                "name": "Anna Kowalska",
-                "amount": -54.3,
-                "balanceAfter": 3945.7,
-                "date": "2025-07-28T20:15:00Z"
-              },
-              {
-                "id": "txn002",
-                "title": "Salary – July",
-                "name": "Tech Solutions Ltd.",
-                "amount": 4500,
-                "balanceAfter": 4000,
-                "date": "2025-07-27T09:00:00Z"
-              }
-            ],
-            {
-              "id": "78dcbf29-60bb-44d4-a6eb-4dde09c12d00",
-              "title": "test-03",
-              "name": "Jan Kowalski",
-              "amount": "100",
-              "balanceAfter": "5335.75100",
-              "date": "2025-08-07T16:39:08.596Z"
-            }
-          ],
-          {
-            "id": "422971b2-5c5f-45f5-be50-9a3179fa149a",
-            "title": "test-04",
-            "name": "Jan Kowalski",
-            "amount": "100",
-            "balanceAfter": "5335.75100100",
-            "date": "2025-08-07T16:41:26.977Z"
-          }
-        ],
+        {
+          "id": "txn001",
+          "title": "Dinner at La Piazza",
+          "name": "Anna Kowalska",
+          "amount": -54.3,
+          "balanceAfter": 3945.7,
+          "date": "2025-07-28T20:15:00Z"
+        },
+        {
+          "id": "txn002",
+          "title": "Salary – July",
+          "name": "Tech Solutions Ltd.",
+          "amount": 4500,
+          "balanceAfter": 4000,
+          "date": "2025-07-27T09:00:00Z"
+        },
+        {
+          "id": "78dcbf29-60bb-44d4-a6eb-4dde09c12d00",
+          "title": "test-03",
+          "name": "Jan Kowalski",
+          "amount": "100",
+          "balanceAfter": "5335.75100",
+          "date": "2025-08-07T16:39:08.596Z"
+        },
+        {
+          "id": "422971b2-5c5f-45f5-be50-9a3179fa149a",
+          "title": "test-04",
+          "name": "Jan Kowalski",
+          "amount": "100",
+          "balanceAfter": "5335.75100100",
+          "date": "2025-08-07T16:41:26.977Z"
+        },
         {
           "id": "fd838640-69b6-4dab-92a5-4c0b1e331980",
           "title": "Test-05",
@@ -188,6 +190,14 @@
           "amount": 100,
           "balanceAfter": 1100,
           "date": "2025-08-07T16:45:40.767Z"
+        },
+        {
+          "id": "8a2e6af6-9ed2-4c2f-93a9-28ffc42196c5",
+          "title": "Fast Transfer via Vaulta",
+          "name": "Jan Kowalski",
+          "amount": 150,
+          "balanceAfter": 1250,
+          "date": "2025-08-07T20:28:17.113Z"
         }
       ]
     },
@@ -210,6 +220,25 @@
       ],
       "targetAmount": "10000",
       "id": "iSDfG0z"
+    },
+    {
+      "iban": "PL91639107953934434623103493",
+      "name": "Currency EUR",
+      "currency": "EUR",
+      "balance": "100",
+      "type": "currency",
+      "userId": 1,
+      "transactions": [
+        {
+          "id": "16df1dd0-70a9-4d30-a306-427e892b8be7",
+          "title": "Initial deposit",
+          "name": "Jan Kowalski",
+          "amount": "100",
+          "balanceAfter": "100",
+          "date": "2025-08-07T22:21:24.482Z"
+        }
+      ],
+      "id": "aCJpo3L"
     }
   ]
 }

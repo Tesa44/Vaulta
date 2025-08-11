@@ -6,8 +6,7 @@ import {
   useReducer,
 } from "react";
 import { topCurrencies } from "../data/currencies";
-
-const baseCurrency = "PLN";
+import { useUserAccounts } from "./UserAccountsContext";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -71,9 +70,12 @@ function CurrencyRatesProvider({ children }) {
   const [{ rates, buyRates, sellRates, history, loading, error }, dispatch] =
     useReducer(reducer, initialState);
 
+  const { getBaseCurrency } = useUserAccounts();
+  const baseCurrency = getBaseCurrency() || "PLN";
+
   const filteredCurrencies = useMemo(() => {
     return topCurrencies.filter((c) => c.code !== baseCurrency);
-  }, []);
+  }, [baseCurrency]);
 
   useEffect(
     function () {
@@ -103,7 +105,7 @@ function CurrencyRatesProvider({ children }) {
       }
       fetchRates();
     },
-    [filteredCurrencies]
+    [filteredCurrencies, baseCurrency]
   );
 
   useEffect(
@@ -145,7 +147,7 @@ function CurrencyRatesProvider({ children }) {
       }
       fetchHistory();
     },
-    [filteredCurrencies]
+    [filteredCurrencies, baseCurrency]
   );
 
   return (

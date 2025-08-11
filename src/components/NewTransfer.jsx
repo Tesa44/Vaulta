@@ -2,25 +2,31 @@ import styles from "./NewTransfer.module.css";
 import Button from "./Button";
 import BackButton from "./BackButton";
 import { useUserAccounts } from "../contexts/UserAccountsContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function TransferForm() {
   const [iban, setIban] = useState("");
   const [name, setName] = useState("");
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("Fast Transfer via Vaulta");
   const [amount, setAmount] = useState(0);
   const navigate = useNavigate();
 
-  const { transferMoney } = useUserAccounts();
+  const { transferMoney, loading, error, clearError } = useUserAccounts();
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    await transferMoney(iban, amount, title, name);
+    const success = await transferMoney(iban, amount, title, name);
 
-    navigate("/app/history");
+    if (success) {
+      navigate("/app/history");
+    }
   }
+
+  useEffect(function () {
+    return () => clearError();
+  }, []);
 
   return (
     <div className={styles.box}>
@@ -31,7 +37,7 @@ function TransferForm() {
       <form className={styles.form} onSubmit={handleSubmit}>
         <h2>New Transfer</h2>
 
-        <div className={styles.field}>
+        <div className={styles.row}>
           <label htmlFor="iban">Receiber IBAN number</label>
           <input
             type="text"
@@ -43,7 +49,7 @@ function TransferForm() {
           />
         </div>
 
-        <div className={styles.field}>
+        <div className={styles.row}>
           <label htmlFor="name">Receiver Name</label>
           <input
             type="text"
@@ -55,7 +61,7 @@ function TransferForm() {
           />
         </div>
 
-        <div className={styles.field}>
+        <div className={styles.row}>
           <label htmlFor="title">Transfer Title</label>
           <input
             type="text"
@@ -67,7 +73,7 @@ function TransferForm() {
           />
         </div>
 
-        <div className={styles.field}>
+        <div className={styles.row}>
           <label htmlFor="amount">Amount</label>
           <input
             type="number"
@@ -80,8 +86,10 @@ function TransferForm() {
             required
           />
         </div>
-
-        <Button type="primaryGreen">Send Transfer</Button>
+        {error && <p className={styles.error}>{error}</p>}
+        <Button type="primaryGreen" disabled={loading}>
+          {loading ? "Sending..." : "Send Transfer"}
+        </Button>
       </form>
     </div>
   );

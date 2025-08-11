@@ -18,6 +18,7 @@ import AccountTypePicker from "./components/AccountTypePicker";
 import CurrencyAccountForm from "./components/CurrencyAccountForm";
 import GoalAccountForm from "./components/GoalAccountForm";
 import GoalAccountDetails from "./components/GoalAccountDetails";
+import CurrencyCharts from "./components/CurrencyCharts";
 
 function App() {
   return (
@@ -58,11 +59,16 @@ function App() {
                 <Route
                   path="cantor"
                   element={<CurrencyExchange></CurrencyExchange>}
-                ></Route>
-                <Route
-                  path="exchange-form"
-                  element={<ExchangeForm></ExchangeForm>}
-                ></Route>
+                >
+                  <Route
+                    index
+                    element={<CurrencyCharts></CurrencyCharts>}
+                  ></Route>
+                  <Route
+                    path="exchange"
+                    element={<ExchangeForm></ExchangeForm>}
+                  ></Route>
+                </Route>
                 <Route
                   path="goal-progress"
                   element={<GoalAccountDetails></GoalAccountDetails>}
