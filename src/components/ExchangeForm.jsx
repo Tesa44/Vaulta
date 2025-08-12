@@ -5,64 +5,97 @@ import { useUserAccounts } from "../contexts/UserAccountsContext";
 import Button from "./Button";
 
 export default function ExchangeForm() {
-  const [amount, setAmount] = useState("");
-  const [selectedAccountId, setSelectedAccountId] = useState("");
-  const [convertedAmount, setConvertedAmount] = useState("");
+  const [amountFrom, setAmountFrom] = useState("");
+  const [amountTo, setAmountTo] = useState("");
+  const [fromAccount, setFromAccount] = useState({});
+  const [toAccount, setToAccount] = useState({});
 
+  const navigate = useNavigate();
   const exchangeData = useLocation().state;
   const { type, currency, rate } = exchangeData;
 
   const {
-    accounts,
     getMainAccount,
     getAccountsByCurrency,
-    setCurrentAccount,
-    currentAccount,
-    transferMoney,
+    exchangeMoney,
     error,
+    loading,
+    getBaseCurrency,
+    clearError,
   } = useUserAccounts();
 
-  const navigate = useNavigate();
-
   const mainAccount = getMainAccount();
-
   const selectableAccounts = getAccountsByCurrency(currency);
+  const baseCurrency = getBaseCurrency();
+
+  useEffect(
+    function () {
+      if (type === "buy") {
+        setFromAccount(mainAccount);
+      }
+
+      if (type === "sell") {
+        setToAccount(mainAccount);
+      }
+    },
+    [mainAccount, type]
+  );
+
+  useEffect(function () {
+    return () => clearError();
+  }, []);
+
+  function handleAmountFromChange(e) {
+    const value = e.target.value;
+    setAmountFrom(value);
+    if (value === "") {
+      setAmountTo("");
+      return;
+    }
+    const exchanged =
+      type === "buy"
+        ? (parseFloat(value) / rate).toFixed(2)
+        : (parseFloat(value) * rate).toFixed(2);
+    setAmountTo(exchanged);
+  }
+
+  function handleAmountToChange(e) {
+    const value = e.target.value;
+    setAmountTo(value);
+    if (value === "") {
+      setAmountFrom("");
+      return;
+    }
+    const exchanged =
+      type === "buy"
+        ? (parseFloat(value) * rate).toFixed(2)
+        : (parseFloat(value) / rate).toFixed(2);
+    setAmountFrom(exchanged);
+  }
 
   function handleSelectChange(e) {
-    setSelectedAccountId(e.target.value);
+    const account = selectableAccounts.find((acc) => acc.id === e.target.value);
+    if (type === "buy") {
+      setToAccount(account);
+    }
+    if (type === "sell") {
+      setFromAccount(account);
+    }
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const fromAccount = type === "buy" ? mainAccount : currentAccount;
-    const toAccount =
-      type === "buy"
-        ? accounts.find((acc) => acc.id === selectedAccountId)
-        : mainAccount;
+    // if (!fromAccount || !toAccount) return;
 
-    if (!fromAccount || !toAccount) return;
-
-    const success = await transferMoney(
-      toAccount.iban,
-      amount,
-      type === "buy" ? "Currency purchase" : "Currency sale",
-      `${fromAccount.name} to ${toAccount.name}`,
-      { allowDifferentCurrencies: true, convertedAmount }
+    const success = await exchangeMoney(
+      fromAccount,
+      toAccount,
+      amountFrom,
+      amountTo
     );
 
     if (success) navigate("/app/history");
-  }
-
-  function handleAmount(e) {
-    const newAmount = e.target.value;
-    setAmount(newAmount);
-    setConvertedAmount(
-      (type === "buy"
-        ? parseFloat(newAmount) / rate
-        : parseFloat(newAmount) * rate
-      ).toFixed(2)
-    );
   }
 
   return (
@@ -83,33 +116,7 @@ export default function ExchangeForm() {
       {type === "sell" && (
         <div className={styles.row}>
           <label>Select account to sell from</label>
-          <select value={selectedAccountId} onChange={handleSelectChange}>
-            <option value="">-- Choose account --</option>
-            {selectableAccounts.map((acc) => (
-              <option key={acc.id} value={acc.iban}>
-                {acc.name} ({acc.currency})
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
-
-      <div className={styles.row}>
-        <label>{`Amount (${mainAccount.currency})`}</label>
-        <input
-          type="number"
-          min="0"
-          step="0.01"
-          value={amount}
-          onChange={(e) => handleAmount(e)}
-          required
-        />
-      </div>
-
-      {type === "buy" && (
-        <div className={styles.row}>
-          <label>Choose target account</label>
-          <select value={selectedAccountId} onChange={handleSelectChange}>
+          <select value={fromAccount.id} onChange={handleSelectChange}>
             <option value="">-- Choose account --</option>
             {selectableAccounts.map((acc) => (
               <option key={acc.id} value={acc.id}>
@@ -121,17 +128,62 @@ export default function ExchangeForm() {
       )}
 
       <div className={styles.row}>
-        <label>You will receive ({currency || "..."})</label>
-        <input type="number" value={convertedAmount} disabled />
+        <label>{`You will pay (${fromAccount.currency})`}</label>
+        <input
+          type="number"
+          min="0"
+          step="0.01"
+          value={amountFrom}
+          onChange={handleAmountFromChange}
+          required
+        />
+      </div>
+
+      {type === "buy" && (
+        <div className={styles.row}>
+          <label>Select account to sell from</label>
+          <select value={toAccount.id} onChange={handleSelectChange}>
+            <option value="">-- Choose account --</option>
+            {selectableAccounts.map((acc) => (
+              <option key={acc.id} value={acc.id}>
+                {acc.name} ({acc.currency})
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+      {type === "sell" && (
+        <div className={styles.row}>
+          <label>Main account (source)</label>
+          <input
+            type="text"
+            value={`${mainAccount.name}  - ${mainAccount.balance} ${mainAccount.currency}`}
+            disabled
+          />
+        </div>
+      )}
+
+      <div className={styles.row}>
+        <label>You will receive ({currency})</label>
+        <input
+          type="number"
+          min="0"
+          step="0.01"
+          value={amountTo}
+          onChange={handleAmountToChange}
+          required
+        />
       </div>
 
       {rate && (
         <p className={styles.rate}>
-          Exchange rate: 1 {currency} = {rate} {currency}
+          Exchange rate: 1 {currency} = {rate} {baseCurrency}
         </p>
       )}
       <p className={styles.error}>{error}</p>
-      <Button type="primary">Exchange</Button>
+      <Button type="primary" disabled={loading}>
+        {loading ? "Exchanging..." : "Exchange"}
+      </Button>
     </form>
   );
 }

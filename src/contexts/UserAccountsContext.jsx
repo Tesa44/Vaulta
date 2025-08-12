@@ -3,6 +3,8 @@ import { useAuth } from "./authContext";
 
 const BASE_URL = "http://localhost:8000";
 
+const EXCHANGE_TRANSFER_TITLE = "Currency exchange via Vaulta";
+
 function generateFakeIBAN() {
   const country = "PL"; // Country
   const checksum = Math.floor(10 + Math.random() * 89); // check sum
@@ -29,6 +31,13 @@ function reducer(state, action) {
         loading: false,
       };
 
+    case "accounts/refresh":
+      return {
+        ...state,
+        accounts: action.payload,
+        loading: false,
+      };
+
     case "accounts/setCurrent":
       return { ...state, currentAccount: action.payload, loading: false };
 
@@ -36,6 +45,7 @@ function reducer(state, action) {
       return {
         ...state,
         error: "",
+        loading: false,
         currentAccount: action.payload,
         accounts: state.accounts.map((acc) =>
           acc.id === action.payload.id ? action.payload : acc
@@ -157,13 +167,7 @@ function UserAccountsProvider({ children }) {
     }
   }
 
-  async function transferMoney(
-    receiverIban,
-    amount,
-    title,
-    receiverName,
-    { allowDifferentCurrencies = false, convertedAmount = null } = {}
-  ) {
+  async function transferMoney(receiverIban, amount, title, receiverName) {
     dispatch({ type: "loading" });
 
     try {
@@ -171,10 +175,7 @@ function UserAccountsProvider({ children }) {
 
       if (receiverAccount === null) throw new Error("Could not find account");
 
-      if (
-        !allowDifferentCurrencies &&
-        currentAccount.currency !== receiverAccount.currency
-      )
+      if (currentAccount.currency !== receiverAccount.currency)
         throw new Error(
           `Currencies do not match. (${receiverAccount.currency})`
         );
@@ -188,56 +189,108 @@ function UserAccountsProvider({ children }) {
       }
 
       const newFromBalance = currentAccount.balance - amount;
-      const newToBalance =
-        receiverAccount.balance + Number(convertedAmount || amount);
-      const now = new Date().toISOString();
+      const newToBalance = receiverAccount.balance + Number(amount);
 
-      const fromTransaction = {
-        id: crypto.randomUUID(),
+      const fromTransaction = createTransaction({
         title,
         name: receiverName,
-        amount: -amount,
         balanceAfter: newFromBalance,
-        date: now,
-      };
+        amount: -amount,
+      });
 
-      const toTransaction = {
-        id: crypto.randomUUID(),
+      const toTransaction = createTransaction({
         title,
         name: `${user.name} ${user.surname}`,
-        amount: Number(convertedAmount || amount),
+        amount: Number(amount),
         balanceAfter: newToBalance,
-        date: now,
-      };
+      });
 
-      const updatedCurrentAccount = {
-        ...currentAccount,
-        balance: newFromBalance,
-        transactions: [...currentAccount.transactions, fromTransaction],
-      };
+      const updatedCurrentAccount = updateAccount(
+        currentAccount,
+        newFromBalance,
+        fromTransaction
+      );
+      const updatedReceiverAccount = updateAccount(
+        receiverAccount,
+        newToBalance,
+        toTransaction
+      );
+
+      await Promise.all([
+        patchAccount(updatedCurrentAccount),
+        patchAccount(updatedReceiverAccount),
+      ]);
+
       dispatch({
         type: "accounts/updateCurrent",
         payload: updatedCurrentAccount,
       });
+      return true;
+    } catch (err) {
+      dispatch({ type: "rejected", payload: err.message });
+      console.error(err.message);
+      return false;
+    }
+  }
 
-      const updatedReceiverAccounts = {
-        ...receiverAccount,
-        balance: newToBalance,
-        transactions: [...receiverAccount.transactions, toTransaction],
-      };
+  async function exchangeMoney(fromAccount, toAccount, amountFrom, amountTo) {
+    dispatch({ type: "loading" });
+    try {
+      if (Number(amountFrom) <= 0 || Number(amountTo) <= 0) {
+        throw new Error("Transfer amount must be greater than 0.");
+      }
+      if (!fromAccount.id || !toAccount.id)
+        throw new Error("Please select or add new account");
+
+      if (Number(amountFrom) > fromAccount.balance) {
+        throw new Error("Insufficient funds.");
+      }
+
+      const newFromBalance = fromAccount.balance - amountFrom;
+      const newToBalance = toAccount.balance + Number(amountTo);
+
+      const fromTransaction = createTransaction({
+        title: EXCHANGE_TRANSFER_TITLE,
+        name: `${user.name} ${user.surname}`,
+        amount: -amountFrom,
+        balanceAfter: newFromBalance,
+      });
+
+      const toTransaction = createTransaction({
+        title: EXCHANGE_TRANSFER_TITLE,
+        name: `${user.name} ${user.surname}`,
+        amount: Number(amountTo),
+        balanceAfter: newToBalance,
+      });
+
+      const updatedFromAccount = updateAccount(
+        fromAccount,
+        newFromBalance,
+        fromTransaction
+      );
+
+      const updatedToAccount = updateAccount(
+        toAccount,
+        newToBalance,
+        toTransaction
+      );
+
+      const updatedUserAccounts = accounts.map((acc) => {
+        if (acc.id === fromAccount.id) {
+          return updatedFromAccount;
+        }
+        if (acc.id === toAccount.id) {
+          return updatedToAccount;
+        }
+        return acc;
+      });
 
       await Promise.all([
-        fetch(`${BASE_URL}/accounts/${currentAccount.id}`, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(updatedCurrentAccount),
-        }),
-        fetch(`${BASE_URL}/accounts/${receiverAccount.id}`, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(updatedReceiverAccounts),
-        }),
+        patchAccount(updatedFromAccount),
+        patchAccount(updatedToAccount),
       ]);
+
+      dispatch({ type: "accounts/loaded", payload: updatedUserAccounts });
       return true;
     } catch (err) {
       dispatch({ type: "rejected", payload: err.message });
@@ -264,6 +317,33 @@ function UserAccountsProvider({ children }) {
     return null;
   }
 
+  function createTransaction({ title, name, amount, balanceAfter }) {
+    return {
+      id: crypto.randomUUID(),
+      title,
+      name,
+      amount,
+      balanceAfter,
+      date: new Date().toISOString(),
+    };
+  }
+
+  function updateAccount(account, newBalance, transaction) {
+    return {
+      ...account,
+      balance: newBalance,
+      transactions: [...account.transactions, transaction],
+    };
+  }
+
+  function patchAccount(account) {
+    return fetch(`${BASE_URL}/accounts/${account.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(account),
+    });
+  }
+
   return (
     <UserAccountsContext.Provider
       value={{
@@ -278,6 +358,7 @@ function UserAccountsProvider({ children }) {
         getMainAccount,
         getAccountsByCurrency,
         getBaseCurrency,
+        exchangeMoney,
       }}
     >
       {children}

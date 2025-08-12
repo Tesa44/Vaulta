@@ -21,7 +21,7 @@
       "iban": "PL45 12345678 1234567890123456",
       "name": "Main Account",
       "currency": "PLN",
-      "balance": 11700.75,
+      "balance": 9982.99,
       "type": "main",
       "userId": 1,
       "transactions": [
@@ -144,6 +144,78 @@
           "amount": -100,
           "balanceAfter": 11700.75,
           "date": "2025-08-11T10:17:43.174Z"
+        },
+        {
+          "id": "1f70e85a-bb65-4832-9a03-34e95f2dd09d",
+          "title": "Fast Transfer via Vaulta",
+          "name": "Maks Kolanko",
+          "amount": -100,
+          "balanceAfter": 11600.75,
+          "date": "2025-08-12T11:19:45.373Z"
+        },
+        {
+          "id": "e8de0b85-698a-4029-a893-7d632ae27ab6",
+          "title": "Fast Transfer via Vaulta",
+          "name": "Maks Kolanko",
+          "amount": -50,
+          "balanceAfter": 11550.75,
+          "date": "2025-08-12T11:21:57.291Z"
+        },
+        {
+          "id": "1156a405-f308-459a-a74d-de7dab8ce9fc",
+          "title": "Fast Transfer via Vaulta",
+          "name": "mmm",
+          "amount": -10,
+          "balanceAfter": 11540.75,
+          "date": "2025-08-12T11:25:03.823Z"
+        },
+        {
+          "id": "f0b3317b-0e41-491d-8597-1fd23655d6cf",
+          "title": "Fast Transfer via Vaulta",
+          "name": "mmmm",
+          "amount": -10,
+          "balanceAfter": 11530.75,
+          "date": "2025-08-12T11:25:22.751Z"
+        },
+        {
+          "id": "2504cea3-f437-48a3-8beb-1faf81500430",
+          "title": "Currency exchange via Vaulta",
+          "name": "Jan Kowalski",
+          "amount": 500,
+          "balanceAfter": 500,
+          "date": "2025-08-12T12:55:58.060Z"
+        },
+        {
+          "id": "485acbe5-376b-4d13-b158-68c70a0ca119",
+          "title": "Currency exchange via Vaulta",
+          "name": "Jan Kowalski",
+          "amount": -100,
+          "balanceAfter": 9900,
+          "date": "2025-08-12T14:19:25.276Z"
+        },
+        {
+          "id": "e10edcfe-3457-4dea-b425-c3b06e0399f3",
+          "title": "Currency exchange via Vaulta",
+          "name": "Jan Kowalski",
+          "amount": -100,
+          "balanceAfter": 9800,
+          "date": "2025-08-12T14:21:29.733Z"
+        },
+        {
+          "id": "26b838ac-6d0b-4151-8412-1cd203c1676c",
+          "title": "Currency exchange via Vaulta",
+          "name": "Jan Kowalski",
+          "amount": 282.99,
+          "balanceAfter": 10082.99,
+          "date": "2025-08-12T14:21:59.662Z"
+        },
+        {
+          "id": "2d004126-1bd2-402f-a26c-2c3db9823a10",
+          "title": "Currency exchange via Vaulta",
+          "name": "Jan Kowalski",
+          "amount": -100,
+          "balanceAfter": 9982.99,
+          "date": "2025-08-12T14:57:26.102Z"
         }
       ]
     },
@@ -171,7 +243,7 @@
       "iban": "PL45 12345678 12345678566654321",
       "name": "Main Account",
       "currency": "PLN",
-      "balance": 1250,
+      "balance": 1420,
       "type": "main",
       "userId": 2,
       "transactions": [
@@ -222,6 +294,38 @@
           "amount": 150,
           "balanceAfter": 1250,
           "date": "2025-08-07T20:28:17.113Z"
+        },
+        {
+          "id": "d092a35f-1e70-4b97-bb18-5687c8bde281",
+          "title": "Fast Transfer via Vaulta",
+          "name": "Jan Kowalski",
+          "amount": 100,
+          "balanceAfter": 1350,
+          "date": "2025-08-12T11:19:45.373Z"
+        },
+        {
+          "id": "fe12a0ce-29f5-417b-91d6-d733ede8d211",
+          "title": "Fast Transfer via Vaulta",
+          "name": "Jan Kowalski",
+          "amount": 50,
+          "balanceAfter": 1400,
+          "date": "2025-08-12T11:21:57.291Z"
+        },
+        {
+          "id": "b6ee20c8-38b9-4cc2-9644-29b0df7c0537",
+          "title": "Fast Transfer via Vaulta",
+          "name": "Jan Kowalski",
+          "amount": 10,
+          "balanceAfter": 1410,
+          "date": "2025-08-12T11:25:03.823Z"
+        },
+        {
+          "id": "90e94c60-d391-4627-9c96-c2e82de9aaf7",
+          "title": "Fast Transfer via Vaulta",
+          "name": "Jan Kowalski",
+          "amount": 10,
+          "balanceAfter": 1420,
+          "date": "2025-08-12T11:25:22.751Z"
         }
       ]
     },
@@ -276,7 +380,7 @@
       "iban": "PL76815796944675490438760226",
       "name": "Currency USD",
       "currency": "USD",
-      "balance": "25027.4",
+      "balance": 227.32,
       "type": "currency",
       "userId": 1,
       "transactions": [
@@ -295,6 +399,38 @@
           "amount": 27.4,
           "balanceAfter": "25027.4",
           "date": "2025-08-11T08:38:54.124Z"
+        },
+        {
+          "id": "271fc133-931b-45b3-b8de-8f00e25f7406",
+          "title": "Currency exchange via Vaulta",
+          "name": "Jan Kowalski",
+          "amount": 27.32,
+          "balanceAfter": "25027.427.32",
+          "date": "2025-08-12T14:19:25.276Z"
+        },
+        {
+          "id": "32efb30d-e0fc-4898-a794-48ee7bb2f164",
+          "title": "Currency exchange via Vaulta",
+          "name": "Jan Kowalski",
+          "amount": 27.32,
+          "balanceAfter": 277.32,
+          "date": "2025-08-12T14:21:29.733Z"
+        },
+        {
+          "id": "18bf2a47-afdb-44f0-a6f3-481b73666bbe",
+          "title": "Currency exchange via Vaulta",
+          "name": "Jan Kowalski",
+          "amount": -77.32,
+          "balanceAfter": 200,
+          "date": "2025-08-12T14:21:59.662Z"
+        },
+        {
+          "id": "0fe33984-6346-462e-a8c6-93f564da6ae4",
+          "title": "Currency exchange via Vaulta",
+          "name": "Jan Kowalski",
+          "amount": 27.32,
+          "balanceAfter": 227.32,
+          "date": "2025-08-12T14:57:26.102Z"
         }
       ],
       "id": "0u7bV3g"
@@ -303,7 +439,7 @@
       "iban": "PL12611686998608394402550651",
       "name": "Currency ",
       "currency": "CHF",
-      "balance": 122.14,
+      "balance": 500,
       "type": "currency",
       "userId": 1,
       "transactions": [

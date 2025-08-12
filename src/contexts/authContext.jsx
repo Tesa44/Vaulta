@@ -33,21 +33,20 @@ function reducer(state, action) {
   }
 }
 
+const FAKE_USER = {
+  id: 1,
+  name: "Jan",
+  surname: "Kowalski",
+  email: "kowalski@gmail.com",
+  password: "12345",
+};
+
 const initialState = {
-  user: null,
+  user: FAKE_USER,
   isAuthenticated: false,
   loading: "",
   error: "",
 };
-
-// const FAKE_USER = {
-//   id: 1,
-//   name: "Jan",
-//   surname: "Kowalski",
-//   email: "kowalski@gmail.com",
-//   password: "12345",
-//      avatar: "https://i.pravatar.cc/100?u=zz",
-// };
 
 function AuthProvider({ children }) {
   const [{ user, isAuthenticated, loading, error }, dispatch] = useReducer(
