@@ -1,56 +1,58 @@
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import { useUserAccounts } from "../contexts/UserAccountsContext";
 import styles from "./TransferHistory.module.css";
-import Button from "./Button";
 import TransactionList from "./TransactionList";
+import TransactionSearchForm from "./TransactionSearchForm";
 
-function TransferHistory({ onSearch }) {
-  const [query, setQuery] = useState("");
-  const [sortBy, setSortBy] = useState("date-desc");
-  const [type, setType] = useState("all");
+function TransferHistory() {
+  const [filters, setFilters] = useState({
+    query: "",
+    sortBy: "date-desc",
+    type: "all",
+  });
+  const [filteredTransactions, setFilteredTransactions] = useState([]);
+  const { currentAccount } = useUserAccounts();
+  const transactions = currentAccount.transactions;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSearch({ query, sortBy, type });
-  };
+  useEffect(
+    function () {
+      if (!transactions) return;
+
+      const filteredTransactions = transactions
+        .filter((t) =>
+          t.title.toLowerCase().includes(filters.query.toLowerCase())
+        )
+        .filter((t) => {
+          if (filters.type === "all") return true;
+          if (filters.type === "send") return t.amount < 0;
+          if (filters.type === "received") return t.amount > 0;
+          return true;
+        })
+        .sort((a, b) => {
+          switch (filters.sortBy) {
+            case "date-desc":
+              return new Date(b.date) - new Date(a.date);
+            case "date-asc":
+              return new Date(a.date) - new Date(b.date);
+            case "amount-desc":
+              return b.amount - a.amount;
+            case "amount-asc":
+              return a.amount - b.amount;
+            default:
+              return 0;
+          }
+        });
+      setFilteredTransactions(filteredTransactions);
+    },
+    [transactions, filters]
+  );
+
   return (
     <div className={styles.historyBox}>
       <h3>History</h3>
-
-      <form className={styles.searchForm} onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Search by title..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          className={styles.input}
-        />
-
-        <select
-          value={sortBy}
-          onChange={(e) => setSortBy(e.target.value)}
-          className={styles.select}
-        >
-          <option value="date-desc">Date ↓</option>
-          <option value="date-asc">Date ↑</option>
-          <option value="amount-desc">Amount ↓</option>
-          <option value="amount-asc">Amount ↑</option>
-        </select>
-
-        <select
-          value={type}
-          onChange={(e) => setType(e.target.value)}
-          className={styles.select}
-        >
-          <option value="all">All</option>
-          <option value="send">Sent</option>
-          <option value="received">Received</option>
-        </select>
-
-        <Button type="search">Search</Button>
-      </form>
+      <TransactionSearchForm onChange={setFilters}></TransactionSearchForm>
       <div className={styles.list}>
-        <TransactionList></TransactionList>
+        <TransactionList transactions={filteredTransactions}></TransactionList>
       </div>
     </div>
   );

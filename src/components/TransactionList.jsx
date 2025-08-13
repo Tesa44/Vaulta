@@ -1,11 +1,7 @@
-import { useUserAccounts } from "../contexts/UserAccountsContext";
 import TransactionItem from "./TransactionItem";
 import styles from "./TransactionList.module.css";
 
-function TransactionList() {
-  const { currentAccount } = useUserAccounts();
-  const transactions = currentAccount.transactions;
-
+function TransactionList({ transactions }) {
   return (
     <div className={styles.box}>
       <ul className={styles.transactionList}>
