@@ -1,16 +1,24 @@
+import { useNavigate } from "react-router-dom";
+import { useUserAccounts } from "../contexts/UserAccountsContext";
 import styles from "./GoalAccountsItem.module.css";
 import StraightProgressBar from "./StraightProgressBar";
 
 function GoalAccountsItem({ goal }) {
+  const { setCurrentAccount } = useUserAccounts();
+  const navigate = useNavigate();
+
+  function handleClick() {
+    setCurrentAccount(goal);
+    navigate("/app/goal-progress");
+  }
+
   return (
-    <li key={goal.id} className={styles.card}>
+    <li key={goal.id} className={styles.card} onClick={handleClick}>
       <div className={styles.name}>{goal.name}</div>
-      {/* <div className={styles.status}>
-        {goal.balance} / {goal.targetAmount} {goal.currency}
-      </div> */}
       <StraightProgressBar
         current={goal.balance}
         target={goal.targetAmount}
+        className={`${styles.progressHover}`}
       ></StraightProgressBar>
     </li>
   );

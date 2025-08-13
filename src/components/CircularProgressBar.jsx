@@ -1,8 +1,22 @@
+import { useEffect, useState } from "react";
 import styles from "./CircularProgressBar.module.css";
 
 function CircularProgressBar({ currentAmount, targetAmount }) {
-  const progress = Math.min((currentAmount / targetAmount) * 100, 100).toFixed(
-    1
+  const percentage = Math.min(
+    (currentAmount / targetAmount) * 100,
+    100
+  ).toFixed(1);
+
+  const [progress, setProgress] = useState(0);
+
+  useEffect(
+    function () {
+      const timer = setTimeout(() => {
+        setProgress(percentage);
+      }, 100);
+      return () => clearTimeout(timer);
+    },
+    [percentage]
   );
 
   return (
@@ -22,7 +36,7 @@ function CircularProgressBar({ currentAmount, targetAmount }) {
                  a 15.9155 15.9155 0 0 1 0 -31.831"
         />
         <text x="18" y="20.35" className={styles.percentage}>
-          {progress}%
+          {percentage}%
         </text>
       </svg>
     </div>

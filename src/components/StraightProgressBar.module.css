@@ -19,8 +19,8 @@
 }
 
 .fill {
-  background-color: var(--color-brand--1); /* niebieski */
+  background-color: var(--color-brand--1);
   height: 100%;
   border-radius: 6px 0 0 6px;
-  transition: width 0.3s ease;
+  transition: width 1s ease, background-color 0.3s;
 }
