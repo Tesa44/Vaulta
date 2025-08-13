@@ -21,7 +21,7 @@
       "iban": "PL45 12345678 1234567890123456",
       "name": "Main Account",
       "currency": "PLN",
-      "balance": 6582.99,
+      "balance": 25500,
       "type": "main",
       "userId": 1,
       "transactions": [
@@ -264,6 +264,134 @@
           "amount": -2000,
           "balanceAfter": 6582.99,
           "date": "2025-08-13T12:32:38.467Z"
+        },
+        {
+          "id": "a7fa21f0-2b19-41ff-b5be-ebbb268271a4",
+          "title": "Deposit to goal test111",
+          "name": "Jan Kowalski",
+          "amount": -2000,
+          "balanceAfter": 13000,
+          "date": "2025-08-13T16:29:50.693Z"
+        },
+        {
+          "id": "9f92e943-a9da-4c53-ab6a-5c646105df2d",
+          "title": "Deposit to goal test111",
+          "name": "Jan Kowalski",
+          "amount": -1000,
+          "balanceAfter": 12000,
+          "date": "2025-08-13T16:30:43.026Z"
+        },
+        {
+          "id": "bdda80b6-ae92-4493-8caa-7e8be75c6405",
+          "title": "Deposit to goal test111",
+          "name": "Jan Kowalski",
+          "amount": -900,
+          "balanceAfter": 11100,
+          "date": "2025-08-13T16:31:21.618Z"
+        },
+        {
+          "id": "60f9406b-44d2-4588-933b-5ecf620e010c",
+          "title": "Deposit to goal test111",
+          "name": "Jan Kowalski",
+          "amount": -1000,
+          "balanceAfter": 10100,
+          "date": "2025-08-13T16:31:43.705Z"
+        },
+        {
+          "id": "396362fc-2c7b-430d-9562-f45eec72ff28",
+          "title": "Deposit to goal test111",
+          "name": "Jan Kowalski",
+          "amount": -900,
+          "balanceAfter": 9200,
+          "date": "2025-08-13T16:32:09.745Z"
+        },
+        {
+          "id": "a74d4611-e31b-45e5-b76c-b3853896ed93",
+          "title": "Deposit to goal test111",
+          "name": "Jan Kowalski",
+          "amount": -1000,
+          "balanceAfter": 8200,
+          "date": "2025-08-13T16:33:52.192Z"
+        },
+        {
+          "id": "8d6591d4-4be3-4dc2-89d3-13b976319f4c",
+          "title": "Deposit to goal test111",
+          "name": "Jan Kowalski",
+          "amount": -2000,
+          "balanceAfter": 6200,
+          "date": "2025-08-13T16:33:56.839Z"
+        },
+        {
+          "id": "e1e5b9d5-1c73-4fcd-ab0b-b072dcfe5d5e",
+          "title": "Deposit to goal test111",
+          "name": "Jan Kowalski",
+          "amount": -1000,
+          "balanceAfter": 5200,
+          "date": "2025-08-13T16:40:04.285Z"
+        },
+        {
+          "id": "8f104686-694f-41b9-b300-dd61a3a399eb",
+          "title": "Deposit to goal test111",
+          "name": "Jan Kowalski",
+          "amount": -500,
+          "balanceAfter": 4700,
+          "date": "2025-08-13T16:40:27.872Z"
+        },
+        {
+          "id": "c2d2f82d-8f94-4ef1-b685-a6e551e873e4",
+          "title": "Deposit to goal test111",
+          "name": "Jan Kowalski",
+          "amount": -500,
+          "balanceAfter": 4200,
+          "date": "2025-08-13T16:40:58.699Z"
+        },
+        {
+          "id": "0949f2df-1410-4ad8-8965-01ebc4a7827d",
+          "title": "Deposit to goal test111",
+          "name": "Jan Kowalski",
+          "amount": -500,
+          "balanceAfter": 3700,
+          "date": "2025-08-13T16:44:26.992Z"
+        },
+        {
+          "id": "b7d25dac-f8b1-43bb-9b09-d6de9701839c",
+          "title": "Deposit to goal test111",
+          "name": "Jan Kowalski",
+          "amount": -500,
+          "balanceAfter": 3200,
+          "date": "2025-08-13T16:44:29.298Z"
+        },
+        {
+          "id": "918a29f8-a663-45d2-9b05-39c50572d026",
+          "title": "Deposit to goal test111",
+          "name": "Jan Kowalski",
+          "amount": -1000,
+          "balanceAfter": 2200,
+          "date": "2025-08-13T16:44:33.769Z"
+        },
+        {
+          "id": "92370cb0-9d96-4532-bc38-b67ea1f77cac",
+          "title": "Deposit to goal test111",
+          "name": "Jan Kowalski",
+          "amount": -5000,
+          "balanceAfter": 16000,
+          "date": "2025-08-13T16:44:58.758Z"
+        },
+        {
+          "id": "57c2d508-292a-48b2-b883-d46ea8fab17d",
+          "title": "Deposit to goal test111",
+          "name": "Jan Kowalski",
+          "amount": -500,
+          "balanceAfter": 15500,
+          "date": "2025-08-13T16:45:03.050Z"
+        },
+        {
+          "id": "d8019729-6291-4dc5-bab0-1ea6a0a4dcdf",
+          "title": "Withdraw from goal test111",
+          "name": "Jan Kowalski",
+          "amount": 10000,
+          "balanceAfter": 25500,
+          "date": "2025-08-13T16:45:09.549Z"
         }
       ]
     },
@@ -381,49 +509,73 @@
       "name": "test111",
       "iban": "PL45 12345678 1234567895556041",
       "currency": "PLN",
-      "balance": 2533,
+      "balance": 0,
       "type": "goal",
       "userId": 1,
       "transactions": [
         {
-          "id": "d512b124-e4d9-4d9c-be74-00017b4c9584",
-          "title": "Initial deposit",
-          "name": "Jan Kowalski",
-          "amount": "333",
-          "balanceAfter": "333",
-          "date": "2025-08-06T17:17:05.783Z"
-        },
-        {
-          "id": "5648ef62-df14-4451-8c14-1672921e5adc",
-          "title": "Deposit to goal test111",
-          "name": "Jan Kowalski",
-          "amount": 100,
-          "balanceAfter": "333100",
-          "date": "2025-08-13T12:19:33.951Z"
-        },
-        {
-          "id": "69304bfb-75c2-4c8f-a21b-c29571ab3fef",
-          "title": "Deposit to goal test111",
-          "name": "Jan Kowalski",
-          "amount": 100,
-          "balanceAfter": 433,
-          "date": "2025-08-13T12:22:55.834Z"
-        },
-        {
-          "id": "e58417f5-bc91-4fe2-a05b-848dab112429",
-          "title": "Deposit to goal test111",
-          "name": "Jan Kowalski",
-          "amount": 100,
-          "balanceAfter": 533,
-          "date": "2025-08-13T12:26:46.184Z"
-        },
-        {
-          "id": "423eebbd-9075-4e4c-8a7c-04c6981d6ede",
+          "id": "05412762-328d-4675-a59c-a9b8be3a3f9c",
           "title": "Deposit to goal test111",
           "name": "Jan Kowalski",
           "amount": 2000,
-          "balanceAfter": 2533,
-          "date": "2025-08-13T12:32:38.467Z"
+          "balanceAfter": 2000,
+          "date": "2025-08-13T16:33:56.839Z"
+        },
+        {
+          "id": "d85ce9fe-dc0b-4ad4-97a9-f0566f019362",
+          "title": "Deposit to goal test111",
+          "name": "Jan Kowalski",
+          "amount": 500,
+          "balanceAfter": 2500,
+          "date": "2025-08-13T16:40:27.872Z"
+        },
+        {
+          "id": "4b88908d-e784-4b11-9c8e-d7bcc2a6db42",
+          "title": "Deposit to goal test111",
+          "name": "Jan Kowalski",
+          "amount": 500,
+          "balanceAfter": 3000,
+          "date": "2025-08-13T16:44:26.992Z"
+        },
+        {
+          "id": "03dfc4ee-598b-46ac-b00c-62df26704862",
+          "title": "Deposit to goal test111",
+          "name": "Jan Kowalski",
+          "amount": 500,
+          "balanceAfter": 3500,
+          "date": "2025-08-13T16:44:29.298Z"
+        },
+        {
+          "id": "419cfe7c-08e6-4ff3-8603-daabdc5ef056",
+          "title": "Deposit to goal test111",
+          "name": "Jan Kowalski",
+          "amount": 1000,
+          "balanceAfter": 4500,
+          "date": "2025-08-13T16:44:33.769Z"
+        },
+        {
+          "id": "4ad0f33a-283e-477b-b8d6-e0fc41fba987",
+          "title": "Deposit to goal test111",
+          "name": "Jan Kowalski",
+          "amount": 5000,
+          "balanceAfter": 9500,
+          "date": "2025-08-13T16:44:58.758Z"
+        },
+        {
+          "id": "29850bd5-35cc-45a7-955f-7feb09354006",
+          "title": "Deposit to goal test111",
+          "name": "Jan Kowalski",
+          "amount": 500,
+          "balanceAfter": 10000,
+          "date": "2025-08-13T16:45:03.050Z"
+        },
+        {
+          "id": "9d66af63-af4a-4e10-b597-79691f7be268",
+          "title": "Withdraw from goal test111",
+          "name": "Jan Kowalski",
+          "amount": -10000,
+          "balanceAfter": 0,
+          "date": "2025-08-13T16:45:09.549Z"
         }
       ],
       "targetAmount": "10000",

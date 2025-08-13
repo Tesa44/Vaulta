@@ -9,7 +9,8 @@ function GoalAccountDetails() {
   const [currentAmount, setCurrentAmount] = useState(0);
   const [targetAmount, setTargetAmount] = useState(0);
 
-  const { currentAccount } = useUserAccounts();
+  const { currentAccount, getMainAccount, goalTransferMoney, loading } =
+    useUserAccounts();
 
   useEffect(
     function () {
@@ -22,6 +23,18 @@ function GoalAccountDetails() {
 
   if (currentAccount.type !== "goal") {
     return <p>This account is not a goal account!</p>;
+  }
+
+  async function handleWithdraw() {
+    const mainAccount = getMainAccount();
+    const success = await goalTransferMoney(
+      currentAccount,
+      mainAccount,
+      currentAmount
+    );
+    if (success) {
+      setCurrentAmount(0);
+    }
   }
 
   return (
@@ -38,6 +51,15 @@ function GoalAccountDetails() {
             <span className={styles.separator}>/</span>
             <span className={styles.amount}>{targetAmount} PLN</span>
           </div>
+          {currentAmount >= targetAmount && (
+            <Button
+              type="primaryGreen"
+              disabled={loading}
+              onClick={handleWithdraw}
+            >
+              {loading ? "Withdrawing..." : "Withdraw"}
+            </Button>
+          )}
         </div>
         <GoalAccountDepositForm
           onDeposit={setCurrentAmount}

@@ -4,7 +4,6 @@ import { useAuth } from "./authContext";
 const BASE_URL = "http://localhost:8000";
 
 const EXCHANGE_TRANSFER_TITLE = "Currency exchange via Vaulta";
-const GOAL_TRANSFER_TITLE = "Deposit to goal ";
 
 function generateFakeIBAN() {
   const country = "PL"; // Country
@@ -316,15 +315,20 @@ function UserAccountsProvider({ children }) {
       const newFromBalance = fromAccount.balance - amount;
       const newToBalance = toAccount.balance + Number(amount);
 
+      const message =
+        toAccount.type === "goal"
+          ? `Deposit to goal ${toAccount.name}`
+          : `Withdraw from goal ${fromAccount.name}`;
+
       const fromTransaction = createTransaction({
-        title: GOAL_TRANSFER_TITLE + `${toAccount.name}`,
+        title: message,
         name: `${user.name} ${user.surname}`,
         amount: -amount,
         balanceAfter: newFromBalance,
       });
 
       const toTransaction = createTransaction({
-        title: GOAL_TRANSFER_TITLE + `${toAccount.name}`,
+        title: message,
         name: `${user.name} ${user.surname}`,
         amount: Number(amount),
         balanceAfter: newToBalance,
@@ -351,6 +355,10 @@ function UserAccountsProvider({ children }) {
         }
         return acc;
       });
+
+      setCurrentAccount(
+        toAccount.type === "goal" ? updatedToAccount : updatedFromAccount
+      );
 
       await Promise.all([
         patchAccount(updatedFromAccount),

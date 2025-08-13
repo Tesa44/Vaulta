@@ -27,6 +27,7 @@ function GoalAccountDepositForm({ onDeposit }) {
     if (success) {
       const newAmount = currentAccount.balance + Number(amount);
       onDeposit(newAmount);
+      setAmount("");
     }
   }
 
