@@ -19,6 +19,7 @@ import CurrencyAccountForm from "./components/CurrencyAccountForm";
 import GoalAccountForm from "./components/GoalAccountForm";
 import GoalAccountDetails from "./components/GoalAccountDetails";
 import CurrencyCharts from "./components/CurrencyCharts";
+import GoalAccounts from "./components/GoalAccounts";
 
 function App() {
   return (
@@ -69,6 +70,10 @@ function App() {
                     element={<ExchangeForm></ExchangeForm>}
                   ></Route>
                 </Route>
+                <Route
+                  path="goals"
+                  element={<GoalAccounts></GoalAccounts>}
+                ></Route>
                 <Route
                   path="goal-progress"
                   element={<GoalAccountDetails></GoalAccountDetails>}

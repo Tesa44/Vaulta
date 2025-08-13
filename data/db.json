@@ -488,6 +488,26 @@
         }
       ],
       "id": "68eXAde"
+    },
+    {
+      "iban": "PL91897498179845467676082528",
+      "name": "Test01",
+      "currency": "PLN",
+      "balance": 1000,
+      "type": "goal",
+      "userId": 1,
+      "transactions": [
+        {
+          "id": "21b2c746-d34c-4b6b-b63a-70b7042f6888",
+          "title": "Initial deposit",
+          "name": "Jan Kowalski",
+          "amount": 1000,
+          "balanceAfter": 1000,
+          "date": "2025-08-12T16:00:08.822Z"
+        }
+      ],
+      "targetAmount": 10000,
+      "id": "wpNvczc"
     }
   ]
 }
