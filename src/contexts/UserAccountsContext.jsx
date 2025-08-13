@@ -4,6 +4,7 @@ import { useAuth } from "./authContext";
 const BASE_URL = "http://localhost:8000";
 
 const EXCHANGE_TRANSFER_TITLE = "Currency exchange via Vaulta";
+const GOAL_TRANSFER_TITLE = "Deposit to goal ";
 
 function generateFakeIBAN() {
   const country = "PL"; // Country
@@ -299,6 +300,72 @@ function UserAccountsProvider({ children }) {
     }
   }
 
+  async function goalTransferMoney(fromAccount, toAccount, amount) {
+    dispatch({ type: "loading" });
+    try {
+      if (Number(amount) <= 0) {
+        throw new Error("Transfer amount must be greater than 0.");
+      }
+      if (!fromAccount.id || !toAccount.id)
+        throw new Error("Please select or add new account");
+
+      if (Number(amount) > fromAccount.balance) {
+        throw new Error("Insufficient funds.");
+      }
+
+      const newFromBalance = fromAccount.balance - amount;
+      const newToBalance = toAccount.balance + Number(amount);
+
+      const fromTransaction = createTransaction({
+        title: GOAL_TRANSFER_TITLE + `${toAccount.name}`,
+        name: `${user.name} ${user.surname}`,
+        amount: -amount,
+        balanceAfter: newFromBalance,
+      });
+
+      const toTransaction = createTransaction({
+        title: GOAL_TRANSFER_TITLE + `${toAccount.name}`,
+        name: `${user.name} ${user.surname}`,
+        amount: Number(amount),
+        balanceAfter: newToBalance,
+      });
+
+      const updatedFromAccount = updateAccount(
+        fromAccount,
+        newFromBalance,
+        fromTransaction
+      );
+
+      const updatedToAccount = updateAccount(
+        toAccount,
+        newToBalance,
+        toTransaction
+      );
+
+      const updatedUserAccounts = accounts.map((acc) => {
+        if (acc.id === fromAccount.id) {
+          return updatedFromAccount;
+        }
+        if (acc.id === toAccount.id) {
+          return updatedToAccount;
+        }
+        return acc;
+      });
+
+      await Promise.all([
+        patchAccount(updatedFromAccount),
+        patchAccount(updatedToAccount),
+      ]);
+
+      dispatch({ type: "accounts/loaded", payload: updatedUserAccounts });
+      return true;
+    } catch (err) {
+      dispatch({ type: "rejected", payload: err.message });
+      console.error(err.message);
+      return false;
+    }
+  }
+
   function clearError() {
     dispatch({ type: "clearError" });
   }
@@ -359,6 +426,7 @@ function UserAccountsProvider({ children }) {
         getAccountsByCurrency,
         getBaseCurrency,
         exchangeMoney,
+        goalTransferMoney,
       }}
     >
       {children}
