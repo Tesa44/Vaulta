@@ -1,12 +1,11 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import styles from "./OpenAccountFormSecond.module.css";
+import styles from "./OpenAccountAccountSetupForm.module.css";
 import Button from "./Button";
 import { topCurrencies } from "../data/currencies";
 import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/authContext";
 
-function OpenAccountFormSecond() {
-  const [iban, setIban] = useState("");
+function OpenAccountAccountSetupForm() {
   const [currency, setCurrency] = useState("PLN");
   const [deposit, setDeposit] = useState(0);
   const navigate = useNavigate();
@@ -36,16 +35,6 @@ function OpenAccountFormSecond() {
   return (
     <div>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.row}>
-          <label htmlFor="iban">IBAN Number</label>
-          <input
-            type="text"
-            id="iban"
-            value={iban}
-            onChange={(e) => setIban(e.target.value)}
-            required
-          ></input>
-        </div>
         <div className={styles.row}>
           <label htmlFor="currency">Currency</label>
           <select
@@ -78,4 +67,4 @@ function OpenAccountFormSecond() {
   );
 }
 
-export default OpenAccountFormSecond;
+export default OpenAccountAccountSetupForm;

@@ -12,10 +12,6 @@
   flex-direction: column;
 }
 
-.form label {
-  /* color: var(--color-light--2); */
-}
-
 .form input {
   width: 40rem;
 }

@@ -9,8 +9,8 @@ import { Navigate } from "react-router-dom";
 import CurrencyExchange from "./components/CurrencyExchange";
 import ExchangeForm from "./components/ExchangeForm";
 import { CurrencyRatesProvider } from "./contexts/currencyRatesContext";
-import OpenAccountFormFirst from "./components/OpenAccountFormFirst";
-import OpenAccountFormSecond from "./components/OpenAccountFormSecond";
+import OpenAccountUserInfoForm from "./components/OpenAccountUserInfoForm";
+import OpenAccountAccountSetupForm from "./components/OpenAccountAccountSetupForm";
 import { AuthProvider } from "./contexts/authContext";
 import { UserAccountsProvider } from "./contexts/UserAccountsContext";
 import NewAccountLayout from "./pages/NewAccountLayout";
@@ -36,11 +36,13 @@ function App() {
                 ></Route>
                 <Route
                   path="1"
-                  element={<OpenAccountFormFirst></OpenAccountFormFirst>}
+                  element={<OpenAccountUserInfoForm></OpenAccountUserInfoForm>}
                 ></Route>
                 <Route
                   path="2"
-                  element={<OpenAccountFormSecond></OpenAccountFormSecond>}
+                  element={
+                    <OpenAccountAccountSetupForm></OpenAccountAccountSetupForm>
+                  }
                 ></Route>
               </Route>
               <Route path="login" element={<Login></Login>}></Route>

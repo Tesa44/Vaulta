@@ -1,9 +1,9 @@
-import styles from "./OpenAccountFormFirst.module.css";
+import styles from "./OpenAccountUserInfoForm.module.css";
 import Button from "./Button";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-function OpenAccountFormFirst() {
+function OpenAccountUserInfoForm() {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
@@ -88,4 +88,4 @@ function OpenAccountFormFirst() {
   );
 }
 
-export default OpenAccountFormFirst;
+export default OpenAccountUserInfoForm;
