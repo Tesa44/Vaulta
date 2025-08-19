@@ -26,9 +26,12 @@ function Login() {
     [isAuthenticated, navigate]
   );
 
-  useEffect(function () {
-    clearError();
-  }, []);
+  useEffect(
+    function () {
+      clearError();
+    },
+    [clearError]
+  );
 
   return (
     <>

@@ -28,9 +28,12 @@ function OpenAccountAccountSetupForm() {
     [isAuthenticated, navigate]
   );
 
-  useEffect(function () {
-    clearError();
-  }, []);
+  useEffect(
+    function () {
+      clearError();
+    },
+    [clearError]
+  );
 
   return (
     <div>

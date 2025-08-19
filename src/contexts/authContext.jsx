@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useCallback, useContext, useReducer } from "react";
 
 const BASE_URL = "http://localhost:8000";
 
@@ -108,9 +108,9 @@ function AuthProvider({ children }) {
     }
   }
 
-  function clearError() {
+  const clearError = useCallback(function () {
     dispatch({ type: "clearError" });
-  }
+  }, []);
 
   return (
     <AuthContext.Provider

@@ -31,9 +31,12 @@ function GoalAccountDepositForm({ onDeposit }) {
     }
   }
 
-  useEffect(function () {
-    return () => clearError();
-  }, []);
+  useEffect(
+    function () {
+      return () => clearError();
+    },
+    [clearError]
+  );
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>

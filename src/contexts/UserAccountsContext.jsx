@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+} from "react";
 import { useAuth } from "./authContext";
 
 const BASE_URL = "http://localhost:8000";
@@ -374,9 +380,9 @@ function UserAccountsProvider({ children }) {
     }
   }
 
-  function clearError() {
+  const clearError = useCallback(function () {
     dispatch({ type: "clearError" });
-  }
+  }, []);
 
   function getMainAccount() {
     return accounts.find((acc) => acc.type === "main");

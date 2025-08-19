@@ -41,9 +41,12 @@ export default function ExchangeForm() {
     [mainAccount, type]
   );
 
-  useEffect(function () {
-    return () => clearError();
-  }, []);
+  useEffect(
+    function () {
+      return () => clearError();
+    },
+    [clearError]
+  );
 
   function handleAmountFromChange(e) {
     const value = e.target.value;

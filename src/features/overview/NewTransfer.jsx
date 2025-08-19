@@ -24,9 +24,12 @@ function TransferForm() {
     }
   }
 
-  useEffect(function () {
-    return () => clearError();
-  }, []);
+  useEffect(
+    function () {
+      return () => clearError();
+    },
+    [clearError]
+  );
 
   return (
     <div className={styles.box}>
