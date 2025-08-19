@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useUserAccounts } from "../../contexts/UserAccountsContext";
-import styles from "./TransferHistory.module.css";
 import TransactionList from "./TransactionList";
 import TransactionSearchForm from "./TransactionSearchForm";
 
@@ -48,12 +47,10 @@ function TransferHistory() {
   );
 
   return (
-    <div className={styles.historyBox}>
+    <div>
       <h3>History</h3>
       <TransactionSearchForm onChange={setFilters}></TransactionSearchForm>
-      <div className={styles.list}>
-        <TransactionList transactions={filteredTransactions}></TransactionList>
-      </div>
+      <TransactionList transactions={filteredTransactions}></TransactionList>
     </div>
   );
 }

@@ -1,0 +1,12 @@
+.list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  min-height: 0;
+}
+
+.box {
+  height: 50vh;
+  overflow-y: scroll;
+}

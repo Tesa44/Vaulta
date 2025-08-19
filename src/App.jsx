@@ -20,6 +20,7 @@ import CurrencyAccountForm from "./features/accounts/CurrencyAccountForm";
 import GoalAccountForm from "./features/goals/GoalAccountForm";
 import GoalAccountDetails from "./features/goals/GoalAccountDetails";
 import GoalAccounts from "./features/goals/GoalAccounts";
+import Users from "./features/transfer/Users";
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
                   path="new-transfer"
                   element={<NewTransfer></NewTransfer>}
                 ></Route>
+                <Route path="users" element={<Users></Users>}></Route>
                 <Route
                   path="cantor"
                   element={<CurrencyExchange></CurrencyExchange>}

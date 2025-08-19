@@ -13,6 +13,34 @@
       "email": "maks@gmail.com",
       "password": "qwerty",
       "id": 2
+    },
+    {
+      "name": "Aleksy",
+      "surname": "Aaaaab",
+      "email": "2121211@gmail.com",
+      "password": "qwerty",
+      "id": 3
+    },
+    {
+      "name": "Aleksy",
+      "surname": "abaca",
+      "email": "21211@gmail.com",
+      "password": "qwerty",
+      "id": 4
+    },
+    {
+      "name": "Stefan",
+      "surname": "Stefanowicz",
+      "email": "221@gmail.com",
+      "password": "qwerty",
+      "id": 5
+    },
+    {
+      "name": "Stefan",
+      "surname": "Stefanowisz",
+      "email": "12@gmail.com",
+      "password": "qwerty",
+      "id": 6
     }
   ],
   "accounts": [
