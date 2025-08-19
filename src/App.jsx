@@ -1,25 +1,25 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import { CurrencyRatesProvider } from "./contexts/currencyRatesContext";
+import { AuthProvider } from "./contexts/authContext";
+import { UserAccountsProvider } from "./contexts/UserAccountsContext";
 import Homepage from "./pages/Homepage";
 import OpenAccount from "./pages/OpenAccount";
 import Login from "./pages/Login";
 import AppLayout from "./pages/AppLayout";
-import TransferHistory from "./components/TransferHistory";
-import NewTransfer from "./components/NewTransfer";
-import { Navigate } from "react-router-dom";
-import CurrencyExchange from "./components/CurrencyExchange";
-import ExchangeForm from "./components/ExchangeForm";
-import { CurrencyRatesProvider } from "./contexts/currencyRatesContext";
-import OpenAccountUserInfoForm from "./components/OpenAccountUserInfoForm";
-import OpenAccountAccountSetupForm from "./components/OpenAccountAccountSetupForm";
-import { AuthProvider } from "./contexts/authContext";
-import { UserAccountsProvider } from "./contexts/UserAccountsContext";
 import NewAccountLayout from "./pages/NewAccountLayout";
-import AccountTypePicker from "./components/AccountTypePicker";
-import CurrencyAccountForm from "./components/CurrencyAccountForm";
-import GoalAccountForm from "./components/GoalAccountForm";
-import GoalAccountDetails from "./components/GoalAccountDetails";
-import CurrencyCharts from "./components/CurrencyCharts";
-import GoalAccounts from "./components/GoalAccounts";
+import TransferHistory from "./features/transactions/TransferHistory";
+import NewTransfer from "./features/overview/NewTransfer";
+import CurrencyExchange from "./features/currency-exchange/CurrencyExchange";
+import ExchangeForm from "./features/currency-exchange/ExchangeForm";
+import CurrencyCharts from "./features/currency-exchange/CurrencyCharts";
+import OpenAccountUserInfoForm from "./features/register/OpenAccountUserInfoForm";
+import OpenAccountAccountSetupForm from "./features/register/OpenAccountAccountSetupForm";
+import AccountTypePicker from "./features/accounts/AccountTypePicker";
+import CurrencyAccountForm from "./features/accounts/CurrencyAccountForm";
+import GoalAccountForm from "./features/goals/GoalAccountForm";
+import GoalAccountDetails from "./features/goals/GoalAccountDetails";
+import GoalAccounts from "./features/goals/GoalAccounts";
 
 function App() {
   return (

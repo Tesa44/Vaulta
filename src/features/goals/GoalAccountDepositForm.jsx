@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { useUserAccounts } from "../contexts/UserAccountsContext";
+import { useUserAccounts } from "../../contexts/UserAccountsContext";
 import styles from "./GoalAccountDepositForm.module.css";
-import Button from "./Button";
+import Button from "../../ui/Button";
 
 function GoalAccountDepositForm({ onDeposit }) {
   const [amount, setAmount] = useState("");

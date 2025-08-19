@@ -1,6 +1,6 @@
-import Button from "./Button";
-import styles from "./TopBar.module.css";
 import { Link } from "react-router-dom";
+import styles from "./TopBar.module.css";
+import Button from "../../ui/Button";
 
 function TopBar() {
   return (

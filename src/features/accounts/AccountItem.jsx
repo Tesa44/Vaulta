@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { useUserAccounts } from "../contexts/UserAccountsContext";
 import styles from "./AccountItem.module.css";
+import { useUserAccounts } from "../../contexts/UserAccountsContext";
 
 function AccountItem({ account, isActive }) {
   const { setCurrentAccount } = useUserAccounts();

@@ -1,6 +1,6 @@
-import styles from "./NewAccountLayout.module.css";
-import BackButton from "../components/BackButton";
 import { Outlet } from "react-router-dom";
+import styles from "./NewAccountLayout.module.css";
+import BackButton from "../ui/BackButton";
 
 function NewAccountLayout() {
   return (

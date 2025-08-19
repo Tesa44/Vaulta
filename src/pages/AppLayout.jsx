@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
-import Accounts from "../components/Accounts";
-import AppNav from "../components/AppNav";
-import TopBar from "../components/TopBar";
+import Accounts from "../features/accounts/Accounts";
+import AppNav from "../layout/AppNav";
+import TopBar from "../features/overview/TopBar";
 import styles from "./AppLayout.module.css";
 
 function AppLayout() {

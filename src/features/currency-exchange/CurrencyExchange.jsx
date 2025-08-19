@@ -1,7 +1,6 @@
-import styles from "./CurrencyExchange.module.css";
-
-import BackButton from "./BackButton";
 import { Outlet } from "react-router-dom";
+import BackButton from "../../ui/BackButton";
+import styles from "./CurrencyExchange.module.css";
 
 export default function CurrencyExchange() {
   return (

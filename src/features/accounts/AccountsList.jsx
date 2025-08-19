@@ -1,4 +1,4 @@
-import { useUserAccounts } from "../contexts/UserAccountsContext";
+import { useUserAccounts } from "../../contexts/UserAccountsContext";
 import AccountItem from "./AccountItem";
 import styles from "./AccountsList.module.css";
 

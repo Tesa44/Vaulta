@@ -1,9 +1,9 @@
 import styles from "./GoalAccounts.module.css";
-import BackButton from "./BackButton";
+import BackButton from "../../ui/BackButton";
 import GoalAccountsList from "./GoalAccountsList";
 import GoalAccountsSearchForm from "./GoalAccountsSearchForm";
 import { useEffect, useState } from "react";
-import { useUserAccounts } from "../contexts/UserAccountsContext";
+import { useUserAccounts } from "../../contexts/UserAccountsContext";
 
 function GoalAccounts() {
   const [filters, setFilters] = useState({

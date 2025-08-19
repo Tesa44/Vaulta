@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { useUserAccounts } from "../contexts/UserAccountsContext";
+import { useUserAccounts } from "../../contexts/UserAccountsContext";
 import styles from "./GoalAccountsItem.module.css";
-import StraightProgressBar from "./StraightProgressBar";
+import StraightProgressBar from "../../ui/StraightProgressBar";
 
 function GoalAccountsItem({ goal }) {
   const { setCurrentAccount } = useUserAccounts();

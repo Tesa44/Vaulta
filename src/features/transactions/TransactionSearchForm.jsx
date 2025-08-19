@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./TransactionSearchForm.module.css";
-import Button from "./Button";
+import Button from "../../ui/Button";
 
 function TransactionSearchForm({ onChange }) {
   const [query, setQuery] = useState("");

@@ -1,7 +1,7 @@
-import { useUserAccounts } from "../contexts/UserAccountsContext";
-import CircularProgressBar from "./CircularProgressBar";
+import { useUserAccounts } from "../../contexts/UserAccountsContext";
+import CircularProgressBar from "../../components/CircularProgressBar";
 import styles from "./GoalProgress.module.css";
-import Button from "./Button";
+import Button from "../../components/Button";
 
 function GoalProgress() {
   const { currentAccount } = useUserAccounts();

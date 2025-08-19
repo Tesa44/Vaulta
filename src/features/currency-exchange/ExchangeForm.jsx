@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./ExchangeForm.module.css";
-import { useUserAccounts } from "../contexts/UserAccountsContext";
-import Button from "./Button";
+import { useUserAccounts } from "../../contexts/UserAccountsContext";
+import Button from "../../ui/Button";
 
 export default function ExchangeForm() {
   const [amountFrom, setAmountFrom] = useState("");

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCurrencyRates } from "../contexts/currencyRatesContext";
+import { useCurrencyRates } from "../../contexts/currencyRatesContext";
 import styles from "./CurrencyCharts.module.css";
 import {
   LineChart,
@@ -11,7 +11,7 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
-import Button from "./Button";
+import Button from "../../ui/Button";
 
 function CurrencyCharts() {
   const [currentPage, setCurrentPage] = useState(1);

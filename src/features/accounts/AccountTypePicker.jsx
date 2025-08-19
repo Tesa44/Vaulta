@@ -1,5 +1,5 @@
 import styles from "./AccountTypePicker.module.css";
-import Button from "./Button";
+import Button from "../../ui/Button";
 
 function AccountTypePicker() {
   return (

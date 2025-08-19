@@ -1,6 +1,6 @@
 import styles from "./OpenAccountUserInfoForm.module.css";
-import Button from "./Button";
-import { NavLink, useNavigate } from "react-router-dom";
+import Button from "../../ui/Button";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 function OpenAccountUserInfoForm() {

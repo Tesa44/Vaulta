@@ -1,8 +1,7 @@
-import styles from "./OpenAccount.module.css";
-import BackButton from "../components/BackButton";
-import Button from "../components/Button";
-import PageNav from "../components/PageNav";
 import { Outlet } from "react-router-dom";
+import styles from "./OpenAccount.module.css";
+import BackButton from "../ui/BackButton";
+import PageNav from "../layout/PageNav";
 
 function OpenAccount() {
   return (

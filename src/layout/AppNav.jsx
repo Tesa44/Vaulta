@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./AppNav.module.css";
-import Button from "./Button";
-import Logo from "./Logo";
+import Button from "../ui/Button";
+import Logo from "../ui/Logo";
 import { useAuth } from "../contexts/authContext";
 
 function AppNav() {

@@ -1,6 +1,6 @@
 import styles from "./Accounts.module.css";
 import AccountsList from "./AccountsList";
-import Button from "./Button";
+import Button from "../../ui/Button";
 
 function Accounts() {
   return (

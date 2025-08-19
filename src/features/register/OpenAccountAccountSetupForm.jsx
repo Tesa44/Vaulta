@@ -1,9 +1,9 @@
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./OpenAccountAccountSetupForm.module.css";
-import Button from "./Button";
-import { topCurrencies } from "../data/currencies";
+import Button from "../../ui/Button";
+import { topCurrencies } from "../../data/currencies";
 import { useEffect, useState } from "react";
-import { useAuth } from "../contexts/authContext";
+import { useAuth } from "../../contexts/authContext";
 
 function OpenAccountAccountSetupForm() {
   const [currency, setCurrency] = useState("PLN");

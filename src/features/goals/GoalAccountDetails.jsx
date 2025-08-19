@@ -1,7 +1,7 @@
-import { useUserAccounts } from "../contexts/UserAccountsContext";
-import CircularProgressBar from "./CircularProgressBar";
+import { useUserAccounts } from "../../contexts/UserAccountsContext";
+import CircularProgressBar from "../../ui/CircularProgressBar";
 import styles from "./GoalAccountDetails.module.css";
-import Button from "./Button";
+import Button from "../../ui/Button";
 import GoalAccountDepositForm from "./GoalAccountDepositForm";
 import { useEffect, useState } from "react";
 
