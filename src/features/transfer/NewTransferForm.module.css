@@ -2,13 +2,6 @@
   font-size: 2.4rem;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
 .form {
   background: #ffffff;
   padding: 2rem;

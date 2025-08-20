@@ -14,7 +14,7 @@ function TopBar() {
         <p className={styles.transferSubheading}>
           Send money instantly with just a few clicks — anytime, anywhere.
         </p>
-        <Link to="new-transfer">
+        <Link to="users">
           <Button type="primaryGreen">New transfer</Button>
         </Link>
       </div>

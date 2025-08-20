@@ -1,10 +1,10 @@
+import { Link } from "react-router-dom";
 import styles from "./UserItem.module.css";
 
 function UserItem({ user }) {
   return (
     <li key={user.id}>
-      <div className={styles.card}>
-        {/* <span>👤</span> */}
+      <Link to={`${user.id}`} className={styles.userItem}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="48"
@@ -16,7 +16,7 @@ function UserItem({ user }) {
         </svg>
         <p>{user.name}</p>
         <p>{user.surname}</p>
-      </div>
+      </Link>
     </li>
   );
 }

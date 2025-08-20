@@ -1,0 +1,23 @@
+.container {
+  /* display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr; */
+  display: flex;
+  gap: 2rem;
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.userDetails {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}

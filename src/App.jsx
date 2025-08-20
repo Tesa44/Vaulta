@@ -9,7 +9,6 @@ import Login from "./pages/Login";
 import AppLayout from "./pages/AppLayout";
 import NewAccountLayout from "./pages/NewAccountLayout";
 import TransferHistory from "./features/transactions/TransferHistory";
-import NewTransfer from "./features/overview/NewTransfer";
 import CurrencyExchange from "./features/currency-exchange/CurrencyExchange";
 import ExchangeForm from "./features/currency-exchange/ExchangeForm";
 import CurrencyCharts from "./features/currency-exchange/CurrencyCharts";
@@ -20,7 +19,8 @@ import CurrencyAccountForm from "./features/accounts/CurrencyAccountForm";
 import GoalAccountForm from "./features/goals/GoalAccountForm";
 import GoalAccountDetails from "./features/goals/GoalAccountDetails";
 import GoalAccounts from "./features/goals/GoalAccounts";
-import Users from "./features/transfer/Users";
+import Users from "./features/users/Users";
+import NewTransfer from "./features/transfer/NewTransfer";
 
 function App() {
   return (
@@ -61,6 +61,10 @@ function App() {
                   element={<NewTransfer></NewTransfer>}
                 ></Route>
                 <Route path="users" element={<Users></Users>}></Route>
+                <Route
+                  path="users/:id"
+                  element={<NewTransfer></NewTransfer>}
+                ></Route>
                 <Route
                   path="cantor"
                   element={<CurrencyExchange></CurrencyExchange>}
