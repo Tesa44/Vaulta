@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useUserAccounts } from "../../contexts/UserAccountsContext";
 import styles from "./GoalAccountDepositForm.module.css";
 import Button from "../../ui/Button";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 function GoalAccountDepositForm({ onDeposit }) {
   const [amount, setAmount] = useState("");
@@ -45,7 +46,10 @@ function GoalAccountDepositForm({ onDeposit }) {
         <label htmlFor="iban">From account</label>
         <input
           type="text"
-          value={`${mainAccount.name}  - ${mainAccount.balance} ${mainAccount.currency}`}
+          value={`${mainAccount.name}  - ${formatCurrency(
+            mainAccount.balance,
+            mainAccount.currency
+          )}`}
           disabled
         />
       </div>

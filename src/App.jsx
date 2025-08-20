@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navigate } from "react-router-dom";
-import { CurrencyRatesProvider } from "./contexts/currencyRatesContext";
+import { CurrencyRatesProvider } from "./contexts/CurrencyRatesContext";
 import { AuthProvider } from "./contexts/authContext";
 import { UserAccountsProvider } from "./contexts/UserAccountsContext";
 import Homepage from "./pages/Homepage";

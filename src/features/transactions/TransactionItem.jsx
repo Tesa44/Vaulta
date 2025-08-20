@@ -1,17 +1,11 @@
 import styles from "./TransactionItem.module.css";
-
-const formatDate = (isoString) => {
-  const options = {
-    year: "numeric",
-    month: "short", // np. Jul
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-  };
-  return new Date(isoString).toLocaleString("en-US", options);
-};
+import { formatCurrency } from "../../utils/formatCurrency";
+import { formatDate } from "../../utils/formatDate";
+import { useUserAccounts } from "../../contexts/UserAccountsContext";
 
 function TransactionItem({ transaction }) {
+  const { currentAccount } = useUserAccounts();
+
   return (
     <li
       className={`${styles.transactionItem} ${
@@ -25,16 +19,14 @@ function TransactionItem({ transaction }) {
           {formatDate(transaction.date)}
         </span>
       </div>
-      <div
-        // className={`${styles.transactionAmount} ${
-        //   transaction.amount >= 0 ? styles["green"] : styles["red"]
-        // }`}
-        className={styles.transactionAmount}
-      >
-        {transaction.amount}
+      <div className={styles.transactionAmount}>
+        {formatCurrency(transaction.amount, currentAccount.currency)}
       </div>
       <div className={styles.balanceAfter}>
-        <p>Balance after transaction</p> <span>{transaction.balanceAfter}</span>
+        <p>Balance after transaction</p>{" "}
+        <span>
+          {formatCurrency(transaction.balanceAfter, currentAccount.currency)}
+        </span>
       </div>
     </li>
   );

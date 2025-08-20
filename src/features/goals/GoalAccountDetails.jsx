@@ -1,9 +1,10 @@
+import { useEffect, useState } from "react";
+import styles from "./GoalAccountDetails.module.css";
 import { useUserAccounts } from "../../contexts/UserAccountsContext";
 import CircularProgressBar from "../../ui/CircularProgressBar";
-import styles from "./GoalAccountDetails.module.css";
 import Button from "../../ui/Button";
 import GoalAccountDepositForm from "./GoalAccountDepositForm";
-import { useEffect, useState } from "react";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 function GoalAccountDetails() {
   const [currentAmount, setCurrentAmount] = useState(0);
@@ -47,9 +48,13 @@ function GoalAccountDetails() {
             targetAmount={targetAmount}
           ></CircularProgressBar>
           <div className={styles.amounts}>
-            <span className={styles.amount}>{currentAmount} PLN</span>
+            <span className={styles.amount}>
+              {formatCurrency(currentAmount, currentAccount.currency)}
+            </span>
             <span className={styles.separator}>/</span>
-            <span className={styles.amount}>{targetAmount} PLN</span>
+            <span className={styles.amount}>
+              {formatCurrency(targetAmount, currentAccount.currency)}
+            </span>
           </div>
           {currentAmount >= targetAmount && (
             <Button

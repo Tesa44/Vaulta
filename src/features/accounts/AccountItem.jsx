@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./AccountItem.module.css";
 import { useUserAccounts } from "../../contexts/UserAccountsContext";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 function AccountItem({ account, isActive }) {
   const { setCurrentAccount } = useUserAccounts();
@@ -26,7 +27,7 @@ function AccountItem({ account, isActive }) {
       <div className={styles.amountContainer}>
         <p> Available funds</p>
         <span className={styles.amount}>
-          {account.balance} {account.currency}
+          {formatCurrency(account.balance, account.currency)}
         </span>
       </div>
     </li>

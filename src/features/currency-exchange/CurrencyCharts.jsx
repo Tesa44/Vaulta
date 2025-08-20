@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCurrencyRates } from "../../contexts/currencyRatesContext";
+import { useCurrencyRates } from "../../contexts/CurrencyRatesContext";
 import styles from "./CurrencyCharts.module.css";
 import {
   LineChart,

@@ -94,6 +94,7 @@ function CurrencyRatesProvider({ children }) {
               Math.pow(value, -1).toFixed(5),
             ])
           );
+          invertedRates[baseCurrency] = 1;
           dispatch({ type: "rates/loaded", payload: invertedRates });
         } catch (err) {
           console.error(err);

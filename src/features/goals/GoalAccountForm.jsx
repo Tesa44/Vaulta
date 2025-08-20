@@ -2,23 +2,26 @@ import { useNavigate } from "react-router-dom";
 import styles from "./GoalAccountForm.module.css";
 import { useState } from "react";
 import { useUserAccounts } from "../../contexts/UserAccountsContext";
-import { topCurrencies } from "../../data/currencies";
 import Button from "../../ui/Button";
+import { useCurrencyRates } from "../../contexts/CurrencyRatesContext";
+// import { topCurrencies } from "../../data/currencies";
 
 function GoalAccountForm() {
   const [name, setName] = useState("");
-  const [currency, setCurrency] = useState("PLN");
+  // const [currency, setCurrency] = useState("PLN");
   const [deposit, setDeposit] = useState(0);
   const [targetAmount, setTargetAmount] = useState(0);
   const navigate = useNavigate();
   const { addAccount, loading, error } = useUserAccounts();
+
+  const { baseCurrency } = useCurrencyRates();
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     const accountData = {
       name,
-      currency,
+      currency: baseCurrency,
       balance: deposit,
       targetAmount,
       type: "goal",
@@ -43,7 +46,7 @@ function GoalAccountForm() {
             required
           ></input>
         </div>
-        <div className={styles.row}>
+        {/* <div className={styles.row}>
           <label htmlFor="currency">Currency</label>
           <select
             id="currency"
@@ -56,9 +59,9 @@ function GoalAccountForm() {
               </option>
             ))}
           </select>
-        </div>
+        </div> */}
         <div className={styles.row}>
-          <label htmlFor="targetAmount">Target amount</label>
+          <label htmlFor="targetAmount">Target amount ({baseCurrency})</label>
           <input
             type="number"
             id="targetAmount"
@@ -67,7 +70,7 @@ function GoalAccountForm() {
           ></input>
         </div>
         <div className={styles.row}>
-          <label htmlFor="deposit">Deposit</label>
+          <label htmlFor="deposit">Deposit ({baseCurrency})</label>
           <input
             type="number"
             id="deposit"
