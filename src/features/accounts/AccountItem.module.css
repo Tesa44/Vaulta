@@ -3,7 +3,7 @@
   border: 1px solid #eee;
   border-radius: 6px;
   margin-bottom: 1rem;
-  background: #f9faff;
+  background: var(--color-light--4);
   cursor: pointer;
 }
 

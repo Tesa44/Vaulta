@@ -1,44 +1,35 @@
 .transactionItem {
-  /* display: flex;
-  justify-content: space-between;
-  align-items: center; */
   display: grid;
   grid-template-columns: 3fr 1fr 1fr;
   align-items: center;
-  background: white;
+  background-color: var(--color-light--5);
   padding: 1.2rem 2.4rem;
   border-radius: 6px;
   margin-bottom: 1rem;
   border: 1px solid #eee;
+  /* box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15); */
 }
 
 .transactionInfo {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+  color: var(--color-dark--1);
 }
 
-.transactionTitle {
+.transactionInfo h4 {
   font-weight: 700;
   font-size: 1.8rem;
 }
 
 .transactionInfo p {
   font-size: 1.4rem;
+  font-weight: 600;
 }
 
 .transactionDate {
   font-size: 1.2rem;
-  color: #888;
-}
-
-.green {
-  background-color: #d3f9d8;
-  /* font-size: 0.85rem; */
-}
-
-.red {
-  background-color: #ffe3e3;
+  color: var(--color-light--1);
 }
 
 .transactionAmount {
@@ -47,11 +38,19 @@
   justify-self: start;
   padding: 0.4rem;
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--color-dark--0);
+}
+
+.arrow {
+  font-size: 3.2rem;
 }
 
 .balanceAfter {
   font-size: 1.2rem;
-  color: #888;
+  color: var(--color-light--1);
   display: flex;
   flex-direction: column;
   align-items: center;
