@@ -1,8 +1,8 @@
 .accounts {
-  background: white;
-  padding: 1rem;
-  border-radius: 8px;
-
+  background: #fff;
+  padding: 2rem;
+  border-radius: 11px;
+  border: 1px solid var(--color-light--2);
   display: flex;
   flex-direction: column;
   min-height: 0;
@@ -10,9 +10,10 @@
 
 .header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   margin-bottom: 2rem;
+  gap: 1rem;
 }
 
 .header h3 {
@@ -21,5 +22,5 @@
 
 .list {
   overflow-y: auto;
-  min-height: 0;
+  height: 100%;
 }

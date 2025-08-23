@@ -25,7 +25,7 @@ function generateFakeIBAN() {
 function reducer(state, action) {
   switch (action.type) {
     case "loading":
-      return { ...state, loading: true };
+      return { ...state, loading: true, error: "" };
 
     case "accounts/loaded":
       return { ...state, accounts: action.payload, loading: false };
@@ -95,8 +95,17 @@ function UserAccountsProvider({ children }) {
     async function fetchAccounts() {
       dispatch({ type: "loading" });
       try {
-        const response = await fetch(`${BASE_URL}/accounts?userId=${user.id}`);
-        const data = await response.json();
+        const res = await fetch(`${BASE_URL}/accounts?userId=${user.id}`);
+
+        if (!res.ok) {
+          throw new Error("Something went wrong with fetching accounts");
+        }
+
+        const data = await res.json();
+        if (data.Response === "False") {
+          throw new Error("Accounts not found");
+        }
+
         dispatch({ type: "accounts/loaded", payload: data });
 
         const mainAccount = data.find((acc) => acc.type === "main");
@@ -106,7 +115,7 @@ function UserAccountsProvider({ children }) {
       } catch (err) {
         dispatch({
           type: "rejected",
-          payload: "There was an error loading data ...",
+          payload: err.message,
         });
         console.error(err);
       }
