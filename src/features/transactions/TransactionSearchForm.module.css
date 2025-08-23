@@ -2,15 +2,10 @@
   display: flex;
   gap: 1.2rem;
   align-items: center;
-  /* justify-content: space-between; */
-  background: white;
-  padding: 1.2rem;
-  border-radius: 9px;
-  margin-bottom: 2.4rem;
 }
 
 .input {
-  width: 40rem;
+  width: 35rem;
   padding: 0.8rem 1.6rem;
   border: 1px solid #ccc;
   border-radius: 9px;

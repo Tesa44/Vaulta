@@ -8,7 +8,7 @@ import OpenAccount from "./pages/OpenAccount";
 import Login from "./pages/Login";
 import AppLayout from "./pages/AppLayout";
 import NewAccountLayout from "./pages/NewAccountLayout";
-import TransferHistory from "./features/transactions/TransferHistory";
+import TransactionHistory from "./features/transactions/TransactionHistory";
 import CurrencyExchange from "./features/currency-exchange/CurrencyExchange";
 import ExchangeForm from "./features/currency-exchange/ExchangeForm";
 import CurrencyCharts from "./features/currency-exchange/CurrencyCharts";
@@ -54,7 +54,7 @@ function App() {
                 ></Route>
                 <Route
                   path="history"
-                  element={<TransferHistory></TransferHistory>}
+                  element={<TransactionHistory></TransactionHistory>}
                 ></Route>
                 <Route
                   path="new-transfer"

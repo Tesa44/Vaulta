@@ -7,17 +7,14 @@
 .main {
   padding: 1.5rem 2rem;
   background: #f7f8fc;
-  /* width: 130rem; */
+  width: 130rem;
   margin: 0 auto;
   height: calc(100vh - 11rem);
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr;
   gap: 2rem;
-
   min-height: 0;
-  /* overflow-y: auto; */
-  max-width: 130rem;
+  border-radius: 11px;
 }
 
 .topBar {
