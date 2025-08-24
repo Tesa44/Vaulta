@@ -1,23 +1,24 @@
 .container {
-  /* display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr; */
-  display: flex;
-  gap: 2rem;
-  min-height: 0;
-  flex: 1;
-  overflow-y: auto;
-}
-
-.userDetails {
   display: flex;
   flex-direction: column;
-  min-height: 0;
+  gap: 1.6rem;
+  background-color: #fff;
+  border-radius: 11px;
+  border: 1px solid var(--color-light--2);
+  padding: 2rem;
+  height: 100%;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  min-height: 0;
+  flex: 1; /* Rozciągam grida, żeby zajął całą pozostałą przestrzeń flexa (container) */
 }
