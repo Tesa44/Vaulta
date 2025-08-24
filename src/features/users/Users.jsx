@@ -1,9 +1,10 @@
-import { Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
 import styles from "./Users.module.css";
 import BackButton from "../../ui/BackButton";
 import UsersList from "./UsersList";
 import UserSearchForm from "./UserSearchForm";
-import { useEffect, useState } from "react";
+import Loader from "../../ui/Loader";
+import ErrorMessage from "../../ui/ErrorMessage";
 
 const BASE_URL = "http://localhost:8000";
 
@@ -25,10 +26,8 @@ function Users() {
 
         const data = await res.json();
         setUsers(data);
-        console.log(data);
       } catch (err) {
         setError(err.message);
-        console.error(err);
       } finally {
         setLoading(false);
       }
@@ -60,15 +59,15 @@ function Users() {
   );
 
   return (
-    <div className={styles.users}>
+    <div className={styles.container}>
       <div className={styles.header}>
         <h3>Users</h3>
         <BackButton></BackButton>
       </div>
       <UserSearchForm onChange={setFilters}></UserSearchForm>
-      {loading && <p>Loading...</p>}
-      {!loading && !error && <UsersList users={filteredUsers}></UsersList>}
-      {error && <p>{error}</p>}
+      {loading && <Loader></Loader>}
+      {error && <ErrorMessage message={error}></ErrorMessage>}
+      <UsersList users={filteredUsers}></UsersList>
     </div>
   );
 }

@@ -41,6 +41,13 @@
       "email": "12@gmail.com",
       "password": "qwerty",
       "id": 6
+    },
+    {
+      "name": "Andrzej",
+      "surname": "Cegła",
+      "email": "12333@gmail.com",
+      "password": "qwerty",
+      "id": 7
     }
   ],
   "accounts": [

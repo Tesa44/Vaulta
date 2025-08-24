@@ -3,13 +3,11 @@ import UserItem from "./UserItem";
 
 function UsersList({ users }) {
   return (
-    <div className={styles.box}>
-      <ul className={styles.list}>
-        {users.map((user) => (
-          <UserItem user={user}></UserItem>
-        ))}
-      </ul>
-    </div>
+    <ul className={styles.list}>
+      {users.map((user) => (
+        <UserItem user={user}></UserItem>
+      ))}
+    </ul>
   );
 }
 
