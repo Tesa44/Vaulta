@@ -3,7 +3,7 @@ import GoalAccountsItem from "./GoalAccountsItem";
 
 function GoalAccountsList({ goalAccounts }) {
   return (
-    <ul className={styles.goalList}>
+    <ul className={styles.list}>
       {goalAccounts.map((goal) => (
         <GoalAccountsItem goal={goal}></GoalAccountsItem>
       ))}
