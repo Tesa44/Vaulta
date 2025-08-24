@@ -8,9 +8,9 @@ import OpenAccount from "./pages/OpenAccount";
 import Login from "./pages/Login";
 import AppLayout from "./pages/AppLayout";
 import TransactionHistory from "./features/transactions/TransactionHistory";
-import CurrencyExchange from "./features/currency-exchange/CurrencyExchange";
-import ExchangeForm from "./features/currency-exchange/ExchangeForm";
-import CurrencyCharts from "./features/currency-exchange/CurrencyCharts";
+import Cantor from "./features/cantor/Cantor";
+import ExchangeForm from "./features/cantor/ExchangeForm";
+import CurrencyCharts from "./features/cantor/CurrencyCharts";
 import OpenAccountUserInfoForm from "./features/register/OpenAccountUserInfoForm";
 import OpenAccountAccountSetupForm from "./features/register/OpenAccountAccountSetupForm";
 import AddAccount from "./features/add-account/AddAccount";
@@ -65,10 +65,7 @@ function App() {
                   path="users/:id"
                   element={<NewTransfer></NewTransfer>}
                 ></Route>
-                <Route
-                  path="cantor"
-                  element={<CurrencyExchange></CurrencyExchange>}
-                >
+                <Route path="cantor" element={<Cantor></Cantor>}>
                   <Route
                     index
                     element={<CurrencyCharts></CurrencyCharts>}

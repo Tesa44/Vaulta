@@ -52,7 +52,7 @@ function CurrencyCharts() {
   }
 
   return (
-    <div>
+    <>
       <div className={styles.card}>
         <h4>
           {currency.code} / {baseCurrency}
@@ -111,7 +111,7 @@ function CurrencyCharts() {
           →
         </Button>
       </div>
-    </div>
+    </>
   );
 }
 

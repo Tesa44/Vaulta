@@ -183,7 +183,7 @@ export default function ExchangeForm() {
           Exchange rate: 1 {currency} = {rate} {baseCurrency}
         </p>
       )}
-      <p className={styles.error}>{error}</p>
+      {error && <p className={styles.error}>{error}</p>}
       <Button type="primary" disabled={loading}>
         {loading ? "Exchanging..." : "Exchange"}
       </Button>
