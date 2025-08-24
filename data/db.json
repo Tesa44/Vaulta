@@ -815,6 +815,26 @@
       ],
       "targetAmount": 10000,
       "id": "wpNvczc"
+    },
+    {
+      "iban": "PL56760593064705715931020398",
+      "name": "Wakacje",
+      "currency": "PLN",
+      "balance": 3000,
+      "type": "goal",
+      "userId": 1,
+      "transactions": [
+        {
+          "id": "ae44b915-91c4-4402-a9c0-0eaa935aac46",
+          "title": "Initial deposit",
+          "name": "Jan Kowalski",
+          "amount": 3000,
+          "balanceAfter": 3000,
+          "date": "2025-08-24T20:02:54.413Z"
+        }
+      ],
+      "targetAmount": 10000,
+      "id": "6ZpYssG"
     }
   ]
 }

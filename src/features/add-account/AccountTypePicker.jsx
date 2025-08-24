@@ -3,7 +3,7 @@ import Button from "../../ui/Button";
 
 function AccountTypePicker() {
   return (
-    <main className={styles.main}>
+    <div className={styles.box}>
       <h2>Select type of your new account</h2>
       <div className={styles.actions}>
         <Button type="big" to="currency">
@@ -15,7 +15,7 @@ function AccountTypePicker() {
           <p>Goal Account</p>
         </Button>
       </div>
-    </main>
+    </div>
   );
 }
 

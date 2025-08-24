@@ -1,31 +1,12 @@
-.main {
+.box {
   background-color: #fff;
-  padding: 2rem;
+  padding: 3.2rem;
+  border-radius: 9px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3.2rem;
-}
-
-.main h4 {
-  /* grid-column: 1 / -1; */
-  text-align: center;
-}
-
-.box {
-  background-color: var(--color-light--2);
-  padding: 2.4rem;
-  font-size: 2.4rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 9px;
-  cursor: pointer;
-}
-
-.box span {
-  font-size: 3.2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .actions {

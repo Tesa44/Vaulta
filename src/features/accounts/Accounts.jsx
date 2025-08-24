@@ -12,7 +12,7 @@ function Accounts() {
     <div className={styles.accounts}>
       <div className={styles.header}>
         <h3>My active accounts</h3>
-        <Button type="light" to="new-account">
+        <Button type="light" to="add-account">
           + Add New
         </Button>
       </div>
