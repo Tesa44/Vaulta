@@ -7,16 +7,16 @@ import Homepage from "./pages/Homepage";
 import OpenAccount from "./pages/OpenAccount";
 import Login from "./pages/Login";
 import AppLayout from "./pages/AppLayout";
-import NewAccountLayout from "./pages/NewAccountLayout";
 import TransactionHistory from "./features/transactions/TransactionHistory";
 import CurrencyExchange from "./features/currency-exchange/CurrencyExchange";
 import ExchangeForm from "./features/currency-exchange/ExchangeForm";
 import CurrencyCharts from "./features/currency-exchange/CurrencyCharts";
 import OpenAccountUserInfoForm from "./features/register/OpenAccountUserInfoForm";
 import OpenAccountAccountSetupForm from "./features/register/OpenAccountAccountSetupForm";
-import AccountTypePicker from "./features/accounts/AccountTypePicker";
-import CurrencyAccountForm from "./features/accounts/CurrencyAccountForm";
-import GoalAccountForm from "./features/goals/GoalAccountForm";
+import AddAccount from "./features/add-account/AddAccount";
+import AccountTypePicker from "./features/add-account/AccountTypePicker";
+import CurrencyAccountForm from "./features/add-account/CurrencyAccountForm";
+import GoalAccountForm from "./features/add-account/GoalAccountForm";
 import GoalAccountDetails from "./features/goals/GoalAccountDetails";
 import GoalAccounts from "./features/goals/GoalAccounts";
 import Users from "./features/users/Users";
@@ -86,10 +86,7 @@ function App() {
                   path="goal-progress"
                   element={<GoalAccountDetails></GoalAccountDetails>}
                 ></Route>
-                <Route
-                  path="new-account"
-                  element={<NewAccountLayout></NewAccountLayout>}
-                >
+                <Route path="add-account" element={<AddAccount></AddAccount>}>
                   <Route
                     index
                     element={<AccountTypePicker></AccountTypePicker>}
