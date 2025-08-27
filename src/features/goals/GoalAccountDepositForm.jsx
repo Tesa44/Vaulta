@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useUserAccounts } from "../../contexts/UserAccountsContext";
-import styles from "./GoalAccountDepositForm.module.css";
-import Button from "../../ui/Button";
 import { formatCurrency } from "../../utils/formatCurrency";
+import Form from "../../ui/Form";
 
 function GoalAccountDepositForm({ onDeposit }) {
   const [amount, setAmount] = useState("");
@@ -40,9 +39,14 @@ function GoalAccountDepositForm({ onDeposit }) {
   );
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <h2>Deposit money to your goal</h2>
-      <div className={styles.row}>
+    <Form
+      onSubmit={handleSubmit}
+      title="Deposit to goal"
+      error={error}
+      loading={loading}
+      submitButtonText="Deposit now"
+    >
+      <Form.Row>
         <label htmlFor="iban">From account</label>
         <input
           type="text"
@@ -52,8 +56,8 @@ function GoalAccountDepositForm({ onDeposit }) {
           )}`}
           disabled
         />
-      </div>
-      <div className={styles.row}>
+      </Form.Row>
+      <Form.Row>
         <label>{`You will deposit (${mainAccount.currency})`}</label>
         <input
           type="number"
@@ -63,12 +67,8 @@ function GoalAccountDepositForm({ onDeposit }) {
           onChange={(e) => setAmount(e.target.value)}
           required
         />
-      </div>
-      {error && <p className={styles.error}>{error}</p>}
-      <Button type="primary" disabled={loading}>
-        {loading ? "Depositing..." : "Deposit Now"}
-      </Button>
-    </form>
+      </Form.Row>
+    </Form>
   );
 }
 

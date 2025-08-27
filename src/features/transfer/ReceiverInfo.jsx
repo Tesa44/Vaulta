@@ -44,7 +44,7 @@ function AccountItem({ account, onSelect, isActive }) {
       <p>
         {account.name} ({account.currency})
       </p>
-      <p>{account.iban}</p>
+      <p className={styles.iban}>{account.iban}</p>
     </li>
   );
 }

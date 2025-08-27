@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserAccounts } from "../../contexts/UserAccountsContext";
-import styles from "./NewTransferForm.module.css";
-import Button from "../../ui/Button";
+import Form from "../../ui/Form";
 
 function NewTransferForm({ toAccount, receiverFullname }) {
   const [fromAccount, setFromAccount] = useState({});
@@ -49,9 +48,14 @@ function NewTransferForm({ toAccount, receiverFullname }) {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <h2>New Transfer</h2>
-      <div className={styles.row}>
+    <Form
+      onSubmit={handleSubmit}
+      title="New transfer"
+      error={error}
+      loading={loading}
+      submitButtonText="Send transfer"
+    >
+      <Form.Row>
         <label>From account ({fromAccount?.currency})</label>
         <select value={fromAccount.id} onChange={handleSelectChange}>
           <option value="">-- Choose account --</option>
@@ -61,8 +65,8 @@ function NewTransferForm({ toAccount, receiverFullname }) {
             </option>
           ))}
         </select>
-      </div>
-      <div className={styles.row}>
+      </Form.Row>
+      <Form.Row>
         <label htmlFor="iban">To account ({toAccount?.currency})</label>
         <input
           type="text"
@@ -72,9 +76,9 @@ function NewTransferForm({ toAccount, receiverFullname }) {
           required
           disabled
         />
-      </div>
+      </Form.Row>
 
-      <div className={styles.row}>
+      <Form.Row>
         <label htmlFor="title">Transfer Title</label>
         <input
           type="text"
@@ -84,9 +88,9 @@ function NewTransferForm({ toAccount, receiverFullname }) {
           onChange={(e) => setTitle(e.target.value)}
           required
         />
-      </div>
+      </Form.Row>
 
-      <div className={styles.row}>
+      <Form.Row>
         <label htmlFor="amount">Amount ({fromAccount?.currency})</label>
         <input
           type="number"
@@ -98,12 +102,8 @@ function NewTransferForm({ toAccount, receiverFullname }) {
           onChange={(e) => setAmount(Number(e.target.value))}
           required
         />
-      </div>
-      {error && <p className={styles.error}>{error}</p>}
-      <Button type="primaryGreen" disabled={loading}>
-        {loading ? "Sending..." : "Send Transfer"}
-      </Button>
-    </form>
+      </Form.Row>
+    </Form>
   );
 }
 

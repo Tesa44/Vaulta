@@ -56,7 +56,7 @@
       "iban": "PL45 12345678 1234567890123456",
       "name": "Main Account",
       "currency": "PLN",
-      "balance": 25511,
+      "balance": 25000.45,
       "type": "main",
       "userId": 1,
       "transactions": [
@@ -443,6 +443,22 @@
           "amount": 111,
           "balanceAfter": 25511,
           "date": "2025-08-20T17:05:30.485Z"
+        },
+        {
+          "id": "bf44c703-12bd-4ef1-a598-12a3251eaea4",
+          "title": "Currency exchange via Vaulta",
+          "name": "Jan Kowalski",
+          "amount": -365.55,
+          "balanceAfter": 25145.45,
+          "date": "2025-08-27T11:38:04.769Z"
+        },
+        {
+          "id": "41c494a2-dd8c-42d3-94cb-ceacc65ea81a",
+          "title": "Deposit to goal Holiday in Las Vegas",
+          "name": "Jan Kowalski",
+          "amount": -145,
+          "balanceAfter": 25000.45,
+          "date": "2025-08-27T11:51:16.787Z"
         }
       ]
     },
@@ -687,7 +703,7 @@
       "iban": "PL76815796944675490438760226",
       "name": "Currency USD",
       "currency": "USD",
-      "balance": 227.32,
+      "balance": 327.32,
       "type": "currency",
       "userId": 1,
       "transactions": [
@@ -738,6 +754,14 @@
           "amount": 27.32,
           "balanceAfter": 227.32,
           "date": "2025-08-12T14:57:26.102Z"
+        },
+        {
+          "id": "41b413a1-ba59-47cd-a7e2-0d47c5d4f3b8",
+          "title": "Currency exchange via Vaulta",
+          "name": "Jan Kowalski",
+          "amount": 100,
+          "balanceAfter": 327.32,
+          "date": "2025-08-27T11:38:04.769Z"
         }
       ],
       "id": "0u7bV3g"
@@ -835,6 +859,53 @@
       ],
       "targetAmount": 10000,
       "id": "6ZpYssG"
+    },
+    {
+      "iban": "PL57903502121554963384056083",
+      "name": "Swedish",
+      "currency": "SEK",
+      "balance": 100,
+      "type": "currency",
+      "userId": 1,
+      "transactions": [
+        {
+          "id": "bc69d341-408f-4df8-8b7e-218d169c512a",
+          "title": "Initial deposit",
+          "name": "Jan Kowalski",
+          "amount": 100,
+          "balanceAfter": 100,
+          "date": "2025-08-27T11:28:50.971Z"
+        }
+      ],
+      "id": "tYmYsh5"
+    },
+    {
+      "iban": "PL81928407403788735533193285",
+      "name": "Holiday in Las Vegas",
+      "currency": "PLN",
+      "balance": 3645,
+      "type": "goal",
+      "userId": 1,
+      "transactions": [
+        {
+          "id": "a18cc304-f2de-4995-8474-33baf2dff403",
+          "title": "Initial deposit",
+          "name": "Jan Kowalski",
+          "amount": 3500,
+          "balanceAfter": 3500,
+          "date": "2025-08-27T11:33:30.144Z"
+        },
+        {
+          "id": "826f02aa-7983-49fe-888d-918a55134186",
+          "title": "Deposit to goal Holiday in Las Vegas",
+          "name": "Jan Kowalski",
+          "amount": 145,
+          "balanceAfter": 3645,
+          "date": "2025-08-27T11:51:16.787Z"
+        }
+      ],
+      "targetAmount": 15000,
+      "id": "YwD5CTK"
     }
   ]
 }

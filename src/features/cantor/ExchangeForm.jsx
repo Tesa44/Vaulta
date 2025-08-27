@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./ExchangeForm.module.css";
 import { useUserAccounts } from "../../contexts/UserAccountsContext";
-import Button from "../../ui/Button";
+import Form from "../../ui/Form";
 
 export default function ExchangeForm() {
   const [amountFrom, setAmountFrom] = useState("");
@@ -102,22 +102,26 @@ export default function ExchangeForm() {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <h2>{type === "buy" ? "Buy Currency" : "Sell Currency"}</h2>
-
+    <Form
+      onSubmit={handleSubmit}
+      title={type === "buy" ? "Buy Currency" : "Sell Currency"}
+      error={error}
+      loading={loading}
+      submitButtonText="Exchange"
+    >
       {type === "buy" && (
-        <div className={styles.row}>
+        <Form.Row>
           <label>Main account (source)</label>
           <input
             type="text"
             value={`${mainAccount.name}  - ${mainAccount.balance} ${mainAccount.currency}`}
             disabled
           />
-        </div>
+        </Form.Row>
       )}
 
       {type === "sell" && (
-        <div className={styles.row}>
+        <Form.Row>
           <label>Select account to sell from</label>
           <select value={fromAccount.id} onChange={handleSelectChange}>
             <option value="">-- Choose account --</option>
@@ -127,10 +131,10 @@ export default function ExchangeForm() {
               </option>
             ))}
           </select>
-        </div>
+        </Form.Row>
       )}
 
-      <div className={styles.row}>
+      <Form.Row>
         <label>{`You will pay (${fromAccount.currency})`}</label>
         <input
           type="number"
@@ -140,10 +144,10 @@ export default function ExchangeForm() {
           onChange={handleAmountFromChange}
           required
         />
-      </div>
+      </Form.Row>
 
       {type === "buy" && (
-        <div className={styles.row}>
+        <Form.Row>
           <label>Select account to sell from</label>
           <select value={toAccount.id} onChange={handleSelectChange}>
             <option value="">-- Choose account --</option>
@@ -153,20 +157,20 @@ export default function ExchangeForm() {
               </option>
             ))}
           </select>
-        </div>
+        </Form.Row>
       )}
       {type === "sell" && (
-        <div className={styles.row}>
+        <Form.Row>
           <label>Main account (source)</label>
           <input
             type="text"
             value={`${mainAccount.name}  - ${mainAccount.balance} ${mainAccount.currency}`}
             disabled
           />
-        </div>
+        </Form.Row>
       )}
 
-      <div className={styles.row}>
+      <Form.Row>
         <label>You will receive ({currency})</label>
         <input
           type="number"
@@ -176,17 +180,13 @@ export default function ExchangeForm() {
           onChange={handleAmountToChange}
           required
         />
-      </div>
+      </Form.Row>
 
       {rate && (
         <p className={styles.rate}>
           Exchange rate: 1 {currency} = {rate} {baseCurrency}
         </p>
       )}
-      {error && <p className={styles.error}>{error}</p>}
-      <Button type="primary" disabled={loading}>
-        {loading ? "Exchanging..." : "Exchange"}
-      </Button>
-    </form>
+    </Form>
   );
 }

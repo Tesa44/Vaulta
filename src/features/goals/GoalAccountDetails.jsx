@@ -46,7 +46,7 @@ function GoalAccountDetails() {
         showBack={false}
         className={styles.center}
       />
-      <div className={styles.grid}>
+      <div className={styles.main}>
         <div className={styles.progressBarBox}>
           <CircularProgressBar
             currentAmount={currentAmount}

@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./CurrencyAccountForm.module.css";
 import { useUserAccounts } from "../../contexts/UserAccountsContext";
-import Button from "../../ui/Button";
 import { topCurrencies } from "../../data/currencies";
+import Form from "../../ui/Form";
 
 function CurrencyAccountForm() {
   const [name, setName] = useState("");
@@ -27,10 +26,14 @@ function CurrencyAccountForm() {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <h2>New Currency Account</h2>
-
-      <div className={styles.row}>
+    <Form
+      onSubmit={handleSubmit}
+      title="New Currency Account"
+      error={error}
+      loading={loading}
+      submitButtonText="Open account"
+    >
+      <Form.Row>
         <label htmlFor="name">Account Name</label>
         <input
           type="text"
@@ -39,8 +42,8 @@ function CurrencyAccountForm() {
           onChange={(e) => setName(e.target.value)}
           required
         ></input>
-      </div>
-      <div className={styles.row}>
+      </Form.Row>
+      <Form.Row>
         <label htmlFor="currency">Currency</label>
         <select
           id="currency"
@@ -53,22 +56,17 @@ function CurrencyAccountForm() {
             </option>
           ))}
         </select>
-      </div>
-      <div className={styles.row}>
-        <label htmlFor="deposit">Deposit</label>
+      </Form.Row>
+      <Form.Row>
+        <label htmlFor="deposit">Deposit ({currency})</label>
         <input
           type="number"
           id="deposit"
           value={deposit}
           onChange={(e) => setDeposit(Number(e.target.value))}
         ></input>
-      </div>
-
-      {error && <p className={styles.error}>{error}</p>}
-      <Button type="primary" disabled={loading}>
-        {loading ? "Opening account..." : "Open account"}
-      </Button>
-    </form>
+      </Form.Row>
+    </Form>
   );
 }
 
