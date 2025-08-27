@@ -6,6 +6,7 @@ import NewTransferForm from "./NewTransferForm";
 import BackButton from "../../ui/BackButton";
 import Loader from "../../ui/Loader";
 import ErrorMessage from "../../ui/ErrorMessage";
+import SectionHeader from "../../ui/SectionHeader";
 
 const BASE_URL = "http://localhost:8000";
 
@@ -68,28 +69,25 @@ function NewTransfer() {
   );
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h3>Fast transfer</h3>
-        <BackButton></BackButton>
-      </div>
+    <>
+      <SectionHeader title="New transfer" />
       <div className={styles.main}>
-        {loading && <Loader></Loader>}
-        {error && <ErrorMessage></ErrorMessage>}
+        {loading && <Loader />}
+        {error && <ErrorMessage />}
         {!loading && !error && (
           <ReceiverInfo
             user={user}
             accounts={userAccounts}
             onSelect={setToAccount}
             selected={toAccount}
-          ></ReceiverInfo>
+          />
         )}
         <NewTransferForm
           toAccount={toAccount}
           receiverFullname={`${user?.name} ${user?.surname}`}
-        ></NewTransferForm>
+        />
       </div>
-    </div>
+    </>
   );
 }
 

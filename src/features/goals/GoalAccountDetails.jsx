@@ -5,6 +5,7 @@ import CircularProgressBar from "../../ui/CircularProgressBar";
 import Button from "../../ui/Button";
 import GoalAccountDepositForm from "./GoalAccountDepositForm";
 import { formatCurrency } from "../../utils/formatCurrency";
+import SectionHeader from "../../ui/SectionHeader";
 
 function GoalAccountDetails() {
   const [currentAmount, setCurrentAmount] = useState(0);
@@ -39,8 +40,12 @@ function GoalAccountDetails() {
   }
 
   return (
-    <div className={styles.container}>
-      <h3>{currentAccount.name}</h3>
+    <>
+      <SectionHeader
+        title={currentAccount.name}
+        showBack={false}
+        className={styles.center}
+      />
       <div className={styles.grid}>
         <div className={styles.progressBarBox}>
           <CircularProgressBar
@@ -70,7 +75,7 @@ function GoalAccountDetails() {
           onDeposit={setCurrentAmount}
         ></GoalAccountDepositForm>
       </div>
-    </div>
+    </>
   );
 }
 

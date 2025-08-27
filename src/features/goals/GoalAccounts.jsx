@@ -1,9 +1,8 @@
-import styles from "./GoalAccounts.module.css";
-import BackButton from "../../ui/BackButton";
-import GoalAccountsList from "./GoalAccountsList";
-import GoalAccountsSearchForm from "./GoalAccountsSearchForm";
 import { useEffect, useState } from "react";
 import { useUserAccounts } from "../../contexts/UserAccountsContext";
+import GoalAccountsList from "./GoalAccountsList";
+import GoalAccountsSearchForm from "./GoalAccountsSearchForm";
+import SectionHeader from "../../ui/SectionHeader";
 
 function GoalAccounts() {
   const [filters, setFilters] = useState({
@@ -47,14 +46,11 @@ function GoalAccounts() {
   );
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h3>My goals</h3>
-        <BackButton></BackButton>
-      </div>
-      <GoalAccountsSearchForm onChange={setFilters}></GoalAccountsSearchForm>
-      <GoalAccountsList goalAccounts={filteredGoalAccounts}></GoalAccountsList>
-    </div>
+    <>
+      <SectionHeader title="My goals" />
+      <GoalAccountsSearchForm onChange={setFilters} />
+      <GoalAccountsList goalAccounts={filteredGoalAccounts} />
+    </>
   );
 }
 

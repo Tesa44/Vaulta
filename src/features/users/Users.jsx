@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import styles from "./Users.module.css";
-import BackButton from "../../ui/BackButton";
 import UsersList from "./UsersList";
 import UserSearchForm from "./UserSearchForm";
 import Loader from "../../ui/Loader";
 import ErrorMessage from "../../ui/ErrorMessage";
+import SectionHeader from "../../ui/SectionHeader";
 
 const BASE_URL = "http://localhost:8000";
 
@@ -59,16 +58,13 @@ function Users() {
   );
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h3>Users</h3>
-        <BackButton></BackButton>
-      </div>
-      <UserSearchForm onChange={setFilters}></UserSearchForm>
-      {loading && <Loader></Loader>}
-      {error && <ErrorMessage message={error}></ErrorMessage>}
-      <UsersList users={filteredUsers}></UsersList>
-    </div>
+    <>
+      <SectionHeader title="Select receiver" />
+      <UserSearchForm onChange={setFilters} />
+      {loading && <Loader />}
+      {error && <ErrorMessage message={error} />}
+      <UsersList users={filteredUsers} />
+    </>
   );
 }
 

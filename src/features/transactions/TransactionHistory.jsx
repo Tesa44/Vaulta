@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import styles from "./TransactionHistory.module.css";
 import { useUserAccounts } from "../../contexts/UserAccountsContext";
 import TransactionList from "./TransactionList";
 import TransactionSearchForm from "./TransactionSearchForm";
 import Loader from "../../ui/Loader";
 import ErrorMessage from "../../ui/ErrorMessage";
+import SectionHeader from "../../ui/SectionHeader";
 
 function TransactionHistory() {
   const [filters, setFilters] = useState({
@@ -50,13 +50,13 @@ function TransactionHistory() {
   );
 
   return (
-    <div className={styles.container}>
-      <h3>History</h3>
-      <TransactionSearchForm onChange={setFilters}></TransactionSearchForm>
-      {loading && <Loader></Loader>}
-      {error && <ErrorMessage message={error}></ErrorMessage>}
-      <TransactionList transactions={filteredTransactions}></TransactionList>
-    </div>
+    <>
+      <SectionHeader title="History" showBack={false} />
+      <TransactionSearchForm onChange={setFilters} />
+      {loading && <Loader />}
+      {error && <ErrorMessage message={error} />}
+      <TransactionList transactions={filteredTransactions} />
+    </>
   );
 }
 

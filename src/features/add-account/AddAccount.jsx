@@ -1,16 +1,12 @@
 import { Outlet } from "react-router-dom";
-import styles from "./AddAccount.module.css";
-import BackButton from "../../ui/BackButton";
+import SectionHeader from "../../ui/SectionHeader";
 
 function AddAccount() {
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h3>Add new account</h3>
-        <BackButton></BackButton>
-      </div>
-      <Outlet></Outlet>
-    </div>
+    <>
+      <SectionHeader title="Add new account" />
+      <Outlet />
+    </>
   );
 }
 

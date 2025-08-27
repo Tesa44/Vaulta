@@ -20,7 +20,7 @@ function AppNav() {
       </div>
       <ul>
         <li>
-          <NavLink to="new-transfer">New transfer</NavLink>
+          <NavLink to="users">New transfer</NavLink>
         </li>
         <li>
           <NavLink to="cantor">Cantor</NavLink>

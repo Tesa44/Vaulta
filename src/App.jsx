@@ -21,6 +21,7 @@ import GoalAccountDetails from "./features/goals/GoalAccountDetails";
 import GoalAccounts from "./features/goals/GoalAccounts";
 import Users from "./features/users/Users";
 import NewTransfer from "./features/transfer/NewTransfer";
+import Container from "./ui/Container";
 
 function App() {
   return (
@@ -54,18 +55,36 @@ function App() {
                 ></Route>
                 <Route
                   path="history"
-                  element={<TransactionHistory></TransactionHistory>}
+                  element={
+                    <Container>
+                      <TransactionHistory />
+                    </Container>
+                  }
                 ></Route>
                 <Route
-                  path="new-transfer"
-                  element={<NewTransfer></NewTransfer>}
+                  path="users"
+                  element={
+                    <Container>
+                      <Users />
+                    </Container>
+                  }
                 ></Route>
-                <Route path="users" element={<Users></Users>}></Route>
                 <Route
                   path="users/:id"
-                  element={<NewTransfer></NewTransfer>}
+                  element={
+                    <Container>
+                      <NewTransfer />
+                    </Container>
+                  }
                 ></Route>
-                <Route path="cantor" element={<Cantor></Cantor>}>
+                <Route
+                  path="cantor"
+                  element={
+                    <Container>
+                      <Cantor />
+                    </Container>
+                  }
+                >
                   <Route
                     index
                     element={<CurrencyCharts></CurrencyCharts>}
@@ -77,13 +96,28 @@ function App() {
                 </Route>
                 <Route
                   path="goals"
-                  element={<GoalAccounts></GoalAccounts>}
+                  element={
+                    <Container>
+                      <GoalAccounts />
+                    </Container>
+                  }
                 ></Route>
                 <Route
                   path="goal-progress"
-                  element={<GoalAccountDetails></GoalAccountDetails>}
+                  element={
+                    <Container>
+                      <GoalAccountDetails />
+                    </Container>
+                  }
                 ></Route>
-                <Route path="add-account" element={<AddAccount></AddAccount>}>
+                <Route
+                  path="add-account"
+                  element={
+                    <Container>
+                      <AddAccount />
+                    </Container>
+                  }
+                >
                   <Route
                     index
                     element={<AccountTypePicker></AccountTypePicker>}

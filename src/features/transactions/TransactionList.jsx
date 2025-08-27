@@ -6,10 +6,7 @@ function TransactionList({ transactions }) {
     <ul className={styles.list}>
       {transactions ? (
         transactions.map((transaction) => (
-          <TransactionItem
-            transaction={transaction}
-            key={transaction.id}
-          ></TransactionItem>
+          <TransactionItem transaction={transaction} key={transaction.id} />
         ))
       ) : (
         <p>No transactions yet</p>
