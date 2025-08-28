@@ -589,82 +589,6 @@
       ]
     },
     {
-      "name": "test111",
-      "iban": "PL45 12345678 1234567895556041",
-      "currency": "PLN",
-      "balance": 0,
-      "type": "goal",
-      "userId": 1,
-      "transactions": [
-        {
-          "id": "05412762-328d-4675-a59c-a9b8be3a3f9c",
-          "title": "Deposit to goal test111",
-          "name": "Jan Kowalski",
-          "amount": 2000,
-          "balanceAfter": 2000,
-          "date": "2025-08-13T16:33:56.839Z"
-        },
-        {
-          "id": "d85ce9fe-dc0b-4ad4-97a9-f0566f019362",
-          "title": "Deposit to goal test111",
-          "name": "Jan Kowalski",
-          "amount": 500,
-          "balanceAfter": 2500,
-          "date": "2025-08-13T16:40:27.872Z"
-        },
-        {
-          "id": "4b88908d-e784-4b11-9c8e-d7bcc2a6db42",
-          "title": "Deposit to goal test111",
-          "name": "Jan Kowalski",
-          "amount": 500,
-          "balanceAfter": 3000,
-          "date": "2025-08-13T16:44:26.992Z"
-        },
-        {
-          "id": "03dfc4ee-598b-46ac-b00c-62df26704862",
-          "title": "Deposit to goal test111",
-          "name": "Jan Kowalski",
-          "amount": 500,
-          "balanceAfter": 3500,
-          "date": "2025-08-13T16:44:29.298Z"
-        },
-        {
-          "id": "419cfe7c-08e6-4ff3-8603-daabdc5ef056",
-          "title": "Deposit to goal test111",
-          "name": "Jan Kowalski",
-          "amount": 1000,
-          "balanceAfter": 4500,
-          "date": "2025-08-13T16:44:33.769Z"
-        },
-        {
-          "id": "4ad0f33a-283e-477b-b8d6-e0fc41fba987",
-          "title": "Deposit to goal test111",
-          "name": "Jan Kowalski",
-          "amount": 5000,
-          "balanceAfter": 9500,
-          "date": "2025-08-13T16:44:58.758Z"
-        },
-        {
-          "id": "29850bd5-35cc-45a7-955f-7feb09354006",
-          "title": "Deposit to goal test111",
-          "name": "Jan Kowalski",
-          "amount": 500,
-          "balanceAfter": 10000,
-          "date": "2025-08-13T16:45:03.050Z"
-        },
-        {
-          "id": "9d66af63-af4a-4e10-b597-79691f7be268",
-          "title": "Withdraw from goal test111",
-          "name": "Jan Kowalski",
-          "amount": -10000,
-          "balanceAfter": 0,
-          "date": "2025-08-13T16:45:09.549Z"
-        }
-      ],
-      "targetAmount": "10000",
-      "id": "iSDfG0z"
-    },
-    {
       "iban": "PL91639107953934434623103493",
       "name": "Currency EUR",
       "currency": "EUR",
@@ -859,25 +783,6 @@
       ],
       "targetAmount": 10000,
       "id": "6ZpYssG"
-    },
-    {
-      "iban": "PL57903502121554963384056083",
-      "name": "Swedish",
-      "currency": "SEK",
-      "balance": 100,
-      "type": "currency",
-      "userId": 1,
-      "transactions": [
-        {
-          "id": "bc69d341-408f-4df8-8b7e-218d169c512a",
-          "title": "Initial deposit",
-          "name": "Jan Kowalski",
-          "amount": 100,
-          "balanceAfter": 100,
-          "date": "2025-08-27T11:28:50.971Z"
-        }
-      ],
-      "id": "tYmYsh5"
     },
     {
       "iban": "PL81928407403788735533193285",

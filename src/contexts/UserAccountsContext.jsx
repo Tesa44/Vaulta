@@ -432,6 +432,29 @@ function UserAccountsProvider({ children }) {
     });
   }
 
+  async function deleteAccount() {
+    dispatch({ type: "loading" });
+    try {
+      const res = await fetch(`${BASE_URL}/accounts/${currentAccount.id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      });
+      if (!res.ok)
+        throw new Error("Something went wrong with deleting account");
+
+      const updatedUserAccounts = accounts.filter(
+        (acc) => acc.id !== currentAccount.id
+      );
+
+      dispatch({ type: "accounts/loaded", payload: updatedUserAccounts });
+      return true;
+    } catch (err) {
+      dispatch({ type: "rejected", payload: err.message });
+      console.error(err.message);
+      return false;
+    }
+  }
+
   return (
     <UserAccountsContext.Provider
       value={{
@@ -448,6 +471,7 @@ function UserAccountsProvider({ children }) {
         getBaseCurrency,
         exchangeMoney,
         goalTransferMoney,
+        deleteAccount,
       }}
     >
       {children}
