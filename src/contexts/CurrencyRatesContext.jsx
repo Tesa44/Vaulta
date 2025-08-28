@@ -8,6 +8,8 @@ import {
 import { topCurrencies } from "../data/currencies";
 import { useUserAccounts } from "./UserAccountsContext";
 
+const BASE_URL = "https://api.frankfurter.app";
+
 function reducer(state, action) {
   switch (action.type) {
     case "loading":
@@ -83,7 +85,7 @@ function CurrencyRatesProvider({ children }) {
         dispatch({ type: "loading" });
         try {
           const res = await fetch(
-            `https://api.frankfurter.app/latest?from=${baseCurrency}&to=${filteredCurrencies
+            `${BASE_URL}/latest?from=${baseCurrency}&to=${filteredCurrencies
               .map((cur) => cur.code)
               .join(",")}`
           );
@@ -119,7 +121,7 @@ function CurrencyRatesProvider({ children }) {
             .slice(0, 10);
 
           const res = await fetch(
-            `https://api.frankfurter.app/${start}..?from=${baseCurrency}&to=${filteredCurrencies
+            `${BASE_URL}/${start}..?from=${baseCurrency}&to=${filteredCurrencies
               .map((cur) => cur.code)
               .join(",")}`
           );

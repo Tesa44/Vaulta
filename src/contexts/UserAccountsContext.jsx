@@ -7,7 +7,7 @@ import {
 } from "react";
 import { useAuth } from "./authContext";
 
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const EXCHANGE_TRANSFER_TITLE = "Currency exchange via Vaulta";
 
@@ -19,7 +19,7 @@ function generateFakeIBAN() {
     1000000000000000 + Math.random() * 9000000000000000
   ); // 16 cyfr
 
-  return `${country}${checksum}${bankCode}${accountNumber}`;
+  return `${country} ${checksum} ${bankCode} ${accountNumber}`;
 }
 
 function reducer(state, action) {
@@ -70,7 +70,6 @@ function reducer(state, action) {
   }
 }
 
-// Kontekst
 const UserAccountsContext = createContext();
 
 const initialState = {
@@ -80,7 +79,6 @@ const initialState = {
   loading: false,
 };
 
-// Provider
 function UserAccountsProvider({ children }) {
   const [{ accounts, currentAccount, error, loading }, dispatch] = useReducer(
     reducer,
@@ -457,7 +455,6 @@ function UserAccountsProvider({ children }) {
   );
 }
 
-// Hook do użycia kontekstu
 function useUserAccounts() {
   const context = useContext(UserAccountsContext);
   if (!context) {

@@ -12,10 +12,6 @@ function TopBar() {
   const { accounts } = useUserAccounts();
   const { baseCurrency, rates } = useCurrencyRates();
 
-  console.log(accounts);
-  console.log(baseCurrency);
-  console.log(rates);
-
   useEffect(
     function () {
       const newBalance = accounts.reduce((balance, acc) => {

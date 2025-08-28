@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useReducer } from "react";
 
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const AuthContext = createContext();
 
@@ -83,7 +83,6 @@ function AuthProvider({ children }) {
     const { name, surname, email, password } = user;
     dispatch({ type: "loading" });
     try {
-      // Sprawdź, czy użytkownik już istnieje
       const existing = await fetch(`${BASE_URL}/users?email=${email}`);
       const found = await existing.json();
 
@@ -91,7 +90,6 @@ function AuthProvider({ children }) {
         throw new Error("User already exists");
       }
 
-      // Dodaj nowego użytkownika
       const res = await fetch(`${BASE_URL}/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -101,8 +99,6 @@ function AuthProvider({ children }) {
       const newUser = await res.json();
 
       dispatch({ type: "auth/login", payload: newUser });
-
-      //   return newUser;
     } catch (err) {
       dispatch({ type: "rejected", payload: err.message });
     }
