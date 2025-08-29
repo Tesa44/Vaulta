@@ -10,7 +10,7 @@ function Form({ onSubmit, title, error, loading, submitButtonText, children }) {
 
       {error && <p className={styles.error}>{error}</p>}
 
-      <Button type="primary" disabled={loading}>
+      <Button type="primary" htmlType="submit" disabled={loading}>
         {loading ? "Loading..." : submitButtonText}
       </Button>
     </form>

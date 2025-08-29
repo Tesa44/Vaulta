@@ -19,6 +19,7 @@ function reducer(state, action) {
       };
 
     case "auth/logout":
+      localStorage.removeItem("token");
       return { ...state, user: null, isAuthenticated: false, loading: false };
 
     case "rejected":
@@ -55,21 +56,29 @@ function AuthProvider({ children }) {
   );
 
   async function login(email, password) {
-    // console.log(email, password);
-    // if (email === FAKE_USER.email && password === FAKE_USER.password) {
-    //   dispatch({ type: "login", payload: FAKE_USER });
-    // }
     dispatch({ type: "loading" });
     try {
-      const res = await fetch(
-        `${BASE_URL}/users?email=${email}&password=${password}`
-      );
-      const users = await res.json();
+      const res = await fetch(`${BASE_URL}/users/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: email, password }),
+      });
 
-      if (users.length === 0) {
-        throw new Error("Invalid credentials");
-      }
-      dispatch({ type: "auth/login", payload: users[0] });
+      if (!res.ok) throw new Error("Login failed");
+
+      const data = await res.json();
+      const token = data.access_token;
+      localStorage.setItem("token", token);
+
+      const user = await fetch(`${BASE_URL}/users/me`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      dispatch({ type: "auth/login", payload: user });
     } catch (err) {
       dispatch({ type: "rejected", payload: err.message });
     }
@@ -83,7 +92,11 @@ function AuthProvider({ children }) {
     const { name, surname, email, password } = user;
     dispatch({ type: "loading" });
     try {
-      const existing = await fetch(`${BASE_URL}/users?email=${email}`);
+      const existing = await fetch(`${BASE_URL}/users`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+      await console.log(existing);
       const found = await existing.json();
 
       if (found.length > 0) {
@@ -96,11 +109,12 @@ function AuthProvider({ children }) {
         body: JSON.stringify({ name, surname, email, password }),
       });
 
-      const newUser = await res.json();
+      if (!res.ok) throw new Error("Something went wrong with register");
 
-      dispatch({ type: "auth/login", payload: newUser });
+      return true;
     } catch (err) {
       dispatch({ type: "rejected", payload: err.message });
+      return false;
     }
   }
 

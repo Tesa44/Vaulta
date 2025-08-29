@@ -1,14 +1,17 @@
 import { useState } from "react";
 import styles from "./EditAccountNameModal.module.css";
-
+import { useUserAccounts } from "../../contexts/UserAccountsContext";
+import Button from "../../ui/Button";
+import ErrorMessage from "../../ui/ErrorMessage";
 function EditAccountNameModal({ account, onClose }) {
   const [newName, setNewName] = useState(account.name);
 
-  function handleSubmit(e) {
+  const { setAccountName, loading, error } = useUserAccounts();
+
+  async function handleSubmit(e) {
     e.preventDefault();
-    // TODO: tutaj logika zmiany nazwy konta (np. API call / context update)
-    console.log("Saving new name:", newName);
-    onClose();
+    const success = await setAccountName(newName);
+    if (success) onClose();
   }
 
   return (
@@ -23,17 +26,14 @@ function EditAccountNameModal({ account, onClose }) {
             className={styles.input}
             required
           />
+          {error && <ErrorMessage message={error} />}
           <div className={styles.actions}>
-            <button type="submit" className={styles.saveBtn}>
-              Save
-            </button>
-            <button
-              type="button"
-              onClick={onClose}
-              className={styles.cancelBtn}
-            >
+            <Button type="primaryGreen" htmlType="submit" disabled={loading}>
+              {loading ? "Saving..." : "Save"}
+            </Button>
+            <Button type="light" onClick={onClose}>
               Cancel
-            </button>
+            </Button>
           </div>
         </form>
       </div>

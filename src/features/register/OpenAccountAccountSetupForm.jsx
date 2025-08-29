@@ -10,23 +10,15 @@ function OpenAccountAccountSetupForm() {
   const [deposit, setDeposit] = useState(0);
   const navigate = useNavigate();
 
-  const { register, isAuthenticated, loading, error, clearError } = useAuth();
+  const { register, loading, error, clearError } = useAuth();
   const user = useLocation().state;
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    await register(user);
+    const success = await register(user);
+    if (success) navigate("/login");
   }
-
-  useEffect(
-    function () {
-      if (isAuthenticated) {
-        navigate("/app");
-      }
-    },
-    [isAuthenticated, navigate]
-  );
 
   useEffect(
     function () {

@@ -455,6 +455,24 @@ function UserAccountsProvider({ children }) {
     }
   }
 
+  async function setAccountName(newName) {
+    const updatedCurrentAccount = { ...currentAccount, name: newName };
+    dispatch({ type: "loading" });
+    try {
+      const res = await patchAccount(updatedCurrentAccount);
+
+      if (!res.ok) throw new Error("Something went wrong with changing name");
+      dispatch({
+        type: "accounts/updateCurrent",
+        payload: updatedCurrentAccount,
+      });
+      return true;
+    } catch (err) {
+      dispatch({ type: "rejected", payload: err.message });
+      return false;
+    }
+  }
+
   return (
     <UserAccountsContext.Provider
       value={{
@@ -472,6 +490,7 @@ function UserAccountsProvider({ children }) {
         exchangeMoney,
         goalTransferMoney,
         deleteAccount,
+        setAccountName,
       }}
     >
       {children}

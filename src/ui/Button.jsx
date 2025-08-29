@@ -1,7 +1,14 @@
 import styles from "./Button.module.css";
 import { Link } from "react-router-dom";
 
-function Button({ children, onClick, type, disabled, to }) {
+function Button({
+  children,
+  onClick,
+  type,
+  disabled,
+  to,
+  htmlType = "button",
+}) {
   if (to) {
     return (
       <Link to={to} className={`${styles.btn} ${styles[type]}`}>
@@ -15,6 +22,7 @@ function Button({ children, onClick, type, disabled, to }) {
       onClick={onClick}
       disabled={disabled}
       className={`${styles.btn} ${styles[type]}`}
+      type={htmlType}
     >
       {children}
     </button>

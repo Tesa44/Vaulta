@@ -22,6 +22,12 @@
   color: var(--color-dark--1);
 }
 
+.red {
+  font-weight: 700;
+  background-color: #e03131;
+  color: var(--color-light--5);
+}
+
 .light {
   background-color: var(--color-light-2);
   color: var(--color-dark--1);
@@ -68,4 +74,14 @@
   font-weight: 600;
   background: none;
   border: 1px solid currentColor;
+}
+
+.options {
+  background-color: inherit;
+  padding: 0;
+  transition: 0.2s all;
+}
+
+.options:hover {
+  background-color: var(--color-light--2);
 }

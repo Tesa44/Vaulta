@@ -6,13 +6,16 @@ import { formatCurrency } from "../../utils/formatCurrency";
 import AccountActionsMenu from "./AccountActionsMenu";
 import EditAccountNameModal from "./EditAccountNameModal";
 import DeleteAccountModal from "./DeleteAccountModal";
+import OptionsButton from "../../ui/OptionsButton";
 
 function AccountItem({ account, isActive }) {
-  const { setCurrentAccount } = useUserAccounts();
+  const { setCurrentAccount, getMainAccount } = useUserAccounts();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  const isMain = account.id === getMainAccount().id;
 
   const navigate = useNavigate();
   function handleSelectAccount() {
@@ -31,7 +34,34 @@ function AccountItem({ account, isActive }) {
       className={`${styles.accountCard} ${isActive ? styles.active : ""}`}
       onClick={handleSelectAccount}
     >
-      <div className={styles.accountLabel}>{account.name}</div>
+      <div className={styles.accountLabel}>
+        <p>{account.name}</p>
+        <div className={styles.actions}>
+          {!isMain && (
+            <OptionsButton
+              size={24}
+              onClick={() => {
+                //e.stopPropagation(); // żeby nie odpaliło handleSelectAccount
+                setIsMenuOpen((prev) => !prev);
+              }}
+            />
+          )}
+
+          {isMenuOpen && (
+            <AccountActionsMenu
+              onEdit={() => {
+                setShowEditModal(true);
+                setIsMenuOpen(false);
+              }}
+              onDelete={() => {
+                setShowDeleteModal(true);
+                setIsMenuOpen(false);
+              }}
+              onClose={() => setIsMenuOpen(false)}
+            />
+          )}
+        </div>
+      </div>
       <div className={styles.iban}>{account.iban}</div>
       <div className={styles.amountContainer}>
         <p> Available funds</p>
@@ -40,28 +70,6 @@ function AccountItem({ account, isActive }) {
         </span>
       </div>
       {/* Trzy kropki */}
-      <button
-        className={styles.actionsButton}
-        onClick={() => {
-          //e.stopPropagation(); // żeby nie odpaliło handleSelectAccount
-          setIsMenuOpen((prev) => !prev);
-        }}
-      >
-        ⋮
-      </button>
-
-      {isMenuOpen && (
-        <AccountActionsMenu
-          onEdit={() => {
-            setShowEditModal(true);
-            setIsMenuOpen(false);
-          }}
-          onDelete={() => {
-            setShowDeleteModal(true);
-            setIsMenuOpen(false);
-          }}
-        />
-      )}
 
       {showEditModal && (
         <EditAccountNameModal
