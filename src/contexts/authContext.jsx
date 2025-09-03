@@ -55,21 +55,41 @@ function AuthProvider({ children }) {
   );
 
   async function login(email, password) {
-    // console.log(email, password);
-    // if (email === FAKE_USER.email && password === FAKE_USER.password) {
-    //   dispatch({ type: "login", payload: FAKE_USER });
-    // }
     dispatch({ type: "loading" });
     try {
-      const res = await fetch(
-        `${BASE_URL}/users?email=${email}&password=${password}`
-      );
-      const users = await res.json();
+      const body = new URLSearchParams({
+        username: email,
+        password,
+        grant_type: "password",
+      });
 
-      if (users.length === 0) {
-        throw new Error("Invalid credentials");
+      const res = await fetch(`${BASE_URL}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body,
+      });
+
+      if (!res.ok) {
+        const errorText = await res.text();
+        console.error("Login error:", res.status, errorText);
+        throw new Error(errorText);
       }
-      dispatch({ type: "auth/login", payload: users[0] });
+      const tokenData = await res.json();
+      const token = tokenData.access_token;
+      localStorage.setItem("token", token);
+
+      const user = await fetch(`${BASE_URL}/users/me`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const userData = await user.json();
+      console.log("Login success");
+      console.log(userData);
+
+      dispatch({ type: "auth/login", payload: userData });
     } catch (err) {
       dispatch({ type: "rejected", payload: err.message });
     }
@@ -83,22 +103,23 @@ function AuthProvider({ children }) {
     const { name, surname, email, password } = user;
     dispatch({ type: "loading" });
     try {
-      const existing = await fetch(`${BASE_URL}/users?email=${email}`);
-      const found = await existing.json();
+      const res = await fetch(`${BASE_URL}/users`);
+      const users = await res.json();
+      const exist = users.some((u) => u.email === email);
 
-      if (found.length > 0) {
+      if (exist) {
         throw new Error("User already exists");
       }
 
-      const res = await fetch(`${BASE_URL}/users`, {
+      const newUser = await fetch(`${BASE_URL}/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, surname, email, password }),
       });
 
-      const newUser = await res.json();
-
-      dispatch({ type: "auth/login", payload: newUser });
+      const newUserData = await newUser.json();
+      console.log(user);
+      console.log(newUserData);
     } catch (err) {
       dispatch({ type: "rejected", payload: err.message });
     }
